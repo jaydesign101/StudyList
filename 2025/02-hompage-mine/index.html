@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대방산업 내 스타일</title>
+    <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/main.js"></script>
+
+    <script src="./js/gnb.js"></script>
+
+    <script src="./js/splitting.min.js"></script>
+    <script src="./js/splitting-user.js"></script>
+
+    <script src="./js/slick.min.js"></script>
+    <script src="./js/slick-user.js"></script>
+    <link rel="stylesheet" href="./css/slick.css">
+
+</head>
+<body>
+<div class="wrap">
+  <!-- header -->
+  <header>
+    <div class="innerHeader">
+      <div class="inner">
+        <h1 class="logo">
+          <a href="index.html">
+            <img src="./img/logo.png" alt="로고1">
+            <img src="./img/logo2.png" alt="로고2">
+          </a>
+        </h1>
+        <ul class="gnb-dept1">
+          <li><a href="#">대메뉴1</a>
+            <ul class="gnb-dept2">
+              <li><a href="#"><span>소메뉴1</span></a></li>
+              <li><a href="#"><span>소메뉴2dddddddddddd</span></a></li>
+              <li><a href="#"><span>소메뉴3</span></a></li>
+            </ul>
+          </li>
+          <li><a href="#">대메뉴2</a>
+            <ul class="gnb-dept2">
+              <li><a href="#"><span>소메뉴1</span></a></li>
+              <li><a href="#"><span>소메뉴2</span></a></li>
+              <li><a href="#"><span>소메뉴3</span></a></li>
+            </ul>
+          </li>
+          <li><a href="#">대메뉴3</a>
+            <ul class="gnb-dept2">
+              <li><a href="#"><span>소메뉴1</span></a></li>
+              <li><a href="#"><span>소메뉴2</span></a></li>
+              <li><a href="#"><span>소메뉴3</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- visual -->
+  <section class="visual">
+      <!-- 
+        - splitting.js : https://splitting.js.org/ → min.js 만 사용
+        - slick.js : https://kenwheeler.github.io/slick/ → min.js 와 slick.css 사용
+      -->
+    <ul class="slide">
+      <li>
+        <img src="./img/visual1.jpg" alt="비주얼 이미지1">
+        <div class="txt en">
+          <div data-splitting>ABCDEFG-1</div>
+          <div data-splitting>I'm Studing-1</div>
+        </div>
+        <a href="#" class="en">Find Out More</a>
+        <span class="mask a"></span>
+        <span class="mask b"></span>
+        <span class="mask c"></span>
+        <span class="mask d"></span>
+      </li>
+      <li>
+        <img src="./img/visual2.jpg" alt="비주얼 이미지2">
+        <div class="txt en">
+          <div data-splitting>ABCDEFG-2</div>
+          <div data-splitting>I'm Studing-2</div>
+        </div>
+        <a href="#" class="en">Find Out More</a>
+        <span class="mask a"></span>
+        <span class="mask b"></span>
+        <span class="mask c"></span>
+        <span class="mask d"></span>
+      </li>
+      <li>
+        <img src="./img/visual3.jpg" alt="비주얼 이미지3">
+        <div class="txt en">
+          <div data-splitting>ABCDEFG-3</div>
+          <div data-splitting>I'm Studing-3</div>
+        </div>
+        <a href="#" class="en">Find Out More</a>
+        <span class="mask a"></span>
+        <span class="mask b"></span>
+        <span class="mask c"></span>
+        <span class="mask d"></span>
+      </li>
+    </ul>
+    <!-- <div class="slide-btn">
+      <div class="prev en">PREV</div>
+      <div class="next en">NEXT</div>
+    </div> -->
+  </section>
+
+  <!-- content -->
+  <section class="content">
+    <span class="line a"></span><span class="line b"></span><span class="line c"></span>
+    <div class="scrollBox" id="scrollBox-Btn">
+      <div class="inner">
+        <a href="#" class="scroll en">
+          <span>Scroll Down</span>
+          <img src="./img/scrolldown.png" alt="스크롤 다운 버튼">
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>
