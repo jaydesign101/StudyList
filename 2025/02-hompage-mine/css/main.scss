@@ -558,7 +558,12 @@ header {
         flex: 1; display: flex; align-items: center; justify-content: space-between;
 
         &.motion {
-          li { display: inline-block; animation: slide-up2 0.4s cubic-bezier(.5, 0, .5, 1) both; animation-delay: calc(70ms * var(--char-index)); }
+          li { animation: customers; 
+            &:nth-child(1){ animation-duration: .6s;}
+            &:nth-child(3){ animation-duration: .9s;}
+            &:nth-child(2){ animation-duration: 1.2s;}
+            &:nth-child(4){ animation-duration: .3s;}
+          }
         }
         li {
           a {
@@ -573,31 +578,28 @@ header {
   }
 }
 
-footer{
-  background-color: #191a1a;
-  color: #fff;
-  padding: 28px 0;
-  .inner{
-    display: flex;
-    flex-direction: column;
-    gap : 8px;
-    ul{
-      display: flex;
-      gap : 16px;
-      &:nth-child(1){
-        li{
-          font-size: 16px;
-          color: #999;
-          font-weight: 600;
-        }
+@keyframes customers {
+  0%{transform: scale(0.4); opacity: 0;}
+  30%{transform: scale(0.4); opacity: 0;}
+}
+
+footer {
+  background-color: #191a1a; color: #fff; padding: 28px 0;
+
+  .inner {
+    display: flex; flex-direction: column; gap: 8px;
+
+    ul {
+      display: flex; gap: 16px;
+
+      &:nth-child(1) {
+        li { font-size: 16px; color: #999; font-weight: 600; }
       }
-      &:nth-child(2){
-        li{
-          color: #777;
-        }
+      &:nth-child(2) {
+        li { color: #777; }
       }
     }
-    p{color: #777;}
+    p { color: #777; }
   }
 }
 /* content animation */

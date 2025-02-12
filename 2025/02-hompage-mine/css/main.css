@@ -1153,9 +1153,19 @@ header.on .innerHeader .inner img:nth-child(2) {
   justify-content: space-between;
 }
 .content .customers .inner ul.motion li {
-  display: inline-block;
-  animation: slide-up2 0.4s cubic-bezier(0.5, 0, 0.5, 1) both;
-  animation-delay: calc(70ms * var(--char-index));
+  animation: customers;
+}
+.content .customers .inner ul.motion li:nth-child(1) {
+  animation-duration: 0.6s;
+}
+.content .customers .inner ul.motion li:nth-child(3) {
+  animation-duration: 0.9s;
+}
+.content .customers .inner ul.motion li:nth-child(2) {
+  animation-duration: 1.2s;
+}
+.content .customers .inner ul.motion li:nth-child(4) {
+  animation-duration: 0.3s;
 }
 .content .customers .inner ul li a {
   color: #fff;
@@ -1182,6 +1192,16 @@ header.on .innerHeader .inner img:nth-child(2) {
   background-color: orange;
 }
 
+@keyframes customers {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+}
 footer {
   background-color: #191a1a;
   color: #fff;
