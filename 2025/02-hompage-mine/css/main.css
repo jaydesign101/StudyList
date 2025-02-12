@@ -148,6 +148,58 @@ header.on .innerHeader .inner img:nth-child(2) {
   opacity: 1;
 }
 
+/* CM Effect */
+.line-effect {
+  position: relative;
+}
+.line-effect::after, .line-effect::before, .line-effect p::after, .line-effect p::before {
+  content: "";
+  position: absolute;
+  background-color: orange;
+  display: block;
+  z-index: 11;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.line-effect::after {
+  width: 50%;
+  height: 6px;
+  top: 0;
+  left: 0;
+}
+.line-effect::before {
+  width: 50%;
+  height: 6px;
+  bottom: 0;
+  right: 0;
+}
+.line-effect p::after {
+  width: 6px;
+  height: 50%;
+  top: 0;
+  right: 0;
+}
+.line-effect p::before {
+  width: 6px;
+  height: 50%;
+  bottom: 0;
+  left: 0;
+}
+.line-effect:hover::after, .line-effect:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+.line-effect:hover p::after, .line-effect:hover p::before {
+  height: 100%;
+  opacity: 1;
+}
+
+.point-line {
+  width: 6px;
+  height: 60px;
+  background-color: orange;
+}
+
 /* visual */
 .visual {
   position: relative;
@@ -220,9 +272,9 @@ header.on .innerHeader .inner img:nth-child(2) {
 .visual .slide li .mask {
   position: absolute;
   top: 0;
-  width: 1px;
+  width: 25%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: #000;
 }
 .visual .slide li .mask.a {
   left: 0%;
@@ -236,17 +288,18 @@ header.on .innerHeader .inner img:nth-child(2) {
 .visual .slide li .mask.d {
   left: 75%;
 }
-.visual .slide .slick-active img {
-  animation-name: img-scale;
-  animation-duration: 3s;
-}
 .visual .slide .slick-active .splitting .char {
   display: inline-block;
   animation: slide-in 1s cubic-bezier(0.5, 0, 0.5, 1) both;
   animation-delay: calc(60ms * var(--char-index));
 }
+.visual .slide .slick-active img {
+  animation-name: img-scale;
+  animation-duration: 3s;
+}
 .visual .slide .slick-active .mask {
   animation-name: visual-mask;
+  animation-fill-mode: forwards;
 }
 .visual .slide .slick-active .mask.a {
   animation-duration: 0.4s;
@@ -389,13 +442,12 @@ header.on .innerHeader .inner img:nth-child(2) {
     background-color: #000;
   }
   99% {
+    width: 1px;
     background-color: #000;
   }
-}
-@keyframes slide-in {
-  from {
-    transform: translateY(-1em) scale(0.5);
-    opacity: 0;
+  100% {
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 }
 @keyframes visual-btn-up {
@@ -421,10 +473,67 @@ header.on .innerHeader .inner img:nth-child(2) {
     width: 100%;
   }
 }
+@keyframes slide-in {
+  from {
+    transform: translateY(-1em) scale(0.5);
+    opacity: 0;
+  }
+}
+@keyframes slide-up2 {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
 /* content */
 .content {
-  height: 2000px;
   position: relative;
+  /* 1. scrollbox */
+  /* 2. information */
+  /* 3. home-think */
+  /* 4. business*/
+  /* 5. NEWS */
+  /* 6. CAREER */
+  /* 7. customers */
+}
+.content .title h2 {
+  margin: 120px 0 24px 0;
+  font-size: 64px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.2em;
+  letter-spacing: 6px;
+}
+.content .title p {
+  font-size: 24px;
+  color: #666;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+.content .more {
+  font-size: 24px;
+  position: relative;
+  color: #333;
+}
+.content .more::before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 70%;
+  height: 4px;
+  background-color: orange;
+  transition: all 0.2s;
+}
+.content .more:hover {
+  color: #333;
+}
+.content .more:hover::before {
+  width: 100%;
 }
 .content .line {
   width: 1px;
@@ -433,6 +542,7 @@ header.on .innerHeader .inner img:nth-child(2) {
   background-color: rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 0;
+  z-index: -10;
 }
 .content .line.a {
   left: 25%;
@@ -457,7 +567,648 @@ header.on .innerHeader .inner img:nth-child(2) {
 .content .scrollBox .scroll img {
   animation: scrollBox-btn 0.5s infinite alternate ease-in-out;
 }
+.content .information {
+  position: relative;
+}
+.content .information .motion .char {
+  display: inline-block;
+  animation: slide-up2 0.4s cubic-bezier(0.5, 0, 0.5, 1) both;
+  animation-delay: calc(70ms * var(--char-index));
+}
+.content .information .motion p {
+  animation: slide-up2;
+  animation-duration: 1s;
+}
+.content .information .point-line {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.5s;
+  opacity: 0;
+}
+.content .information .motion .point-line {
+  top: 0;
+  opacity: 1;
+}
+.content .information .info-slide {
+  position: absolute;
+  left: 50%;
+  margin-left: -240px;
+  width: calc(50% + 240px);
+  z-index: 10;
+}
+.content .information .info-slide .slide .slick-list .slick-track li {
+  width: 700px;
+  height: 500px;
+  padding-right: 20px;
+}
+.content .information .info-slide .slide .slick-list .slick-track li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.content .information .info-slide .slide .slick-list .slick-track li a:hover p span::after {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.content .information .info-slide .slide .slick-list .slick-track li a:hover p span::before {
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+}
+.content .information .info-slide .slide .slick-list .slick-track li a:hover img {
+  transform: scale(1.1);
+}
+.content .information .info-slide .slide .slick-list .slick-track li a p {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.content .information .info-slide .slide .slick-list .slick-track li a p span::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+}
+.content .information .info-slide .slide .slick-list .slick-track li a p span::before {
+  content: "";
+  display: block;
+  background-image: url("./../img/more.png");
+  background-position: center;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #fff;
+  z-index: 1;
+  transition: all 0.1s;
+}
+.content .information .info-slide .slide .slick-list .slick-track li a p img {
+  width: 100%;
+  height: 100%;
+  transition: all 1s;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+}
+.content .information .info-slide .slide .slick-dots {
+  position: absolute;
+  top: 46%;
+  transform: translateY(-50%);
+  left: -360px;
+}
+.content .information .info-slide .slide .slick-dots li {
+  margin: 24px 0;
+  position: relative;
+}
+.content .information .info-slide .slide .slick-dots li::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background-color: orange;
+  display: block;
+  transition: width 0.3s;
+}
+.content .information .info-slide .slide .slick-dots li button {
+  border: 0;
+  font-size: 18px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 10px;
+}
+.content .information .info-slide .slide .slick-dots li::before {
+  font-family: "Bebas Neue";
+  font-size: 28px;
+  color: #666;
+}
+.content .information .info-slide .slide .slick-dots li:nth-child(1)::before {
+  content: "1. ";
+}
+.content .information .info-slide .slide .slick-dots li:nth-child(2)::before {
+  content: "2. ";
+}
+.content .information .info-slide .slide .slick-dots li:nth-child(3)::before {
+  content: "3. ";
+}
+.content .information .info-slide .slide .slick-dots li:nth-child(4)::before {
+  content: "4. ";
+}
+.content .information .info-slide .slide .slick-dots li.slick-active::after {
+  width: 140%;
+}
+.content .information .more {
+  margin-top: 465px;
+  display: inline-block;
+  z-index: 9;
+}
+.content .home-think {
+  margin-top: 240px;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  position: relative;
+}
+.content .home-think::before {
+  content: "";
+  display: block;
+  width: 140%;
+  height: 100%;
+  background: url("./../img/video3.jpg") no-repeat center/cover;
+  position: absolute;
+  top: 0%;
+  left: -30%;
+  transition: all 1s ease-out;
+}
+.content .home-think.motion::before {
+  left: 0%;
+}
+.content .home-think.motion .title p .char {
+  display: inline-block;
+  animation: slide-in 0.3s cubic-bezier(0.5, 0, 0.5, 1) both;
+  animation-delay: calc(60ms * var(--char-index));
+}
+.content .home-think.motion .title h2 {
+  animation: slide-up2 2s;
+}
+.content .home-think .inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content .home-think .inner .title p {
+  color: #fff;
+  margin-bottom: 0;
+}
+.content .home-think .inner .title h2 {
+  color: #fff;
+  margin: 0;
+  font-size: 54px;
+  letter-spacing: 0;
+}
+.content .home-think .inner .title .more {
+  display: inline-block;
+  margin-top: 100px;
+  color: #fff;
+}
+.content .home-think .inner .video {
+  position: relative;
+}
+.content .home-think .inner .video iframe {
+  z-index: 1;
+}
+.content .home-think .inner .video .line-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  cursor: pointer;
+  z-index: 2;
+}
+.content .business {
+  position: relative;
+}
+.content .business .point-line {
+  position: absolute;
+  left: 25%;
+  top: -150px;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all 0.3s;
+}
+.content .business.motion .point-line {
+  top: -100px;
+  opacity: 1;
+}
+.content .business .title {
+  margin-top: 240px;
+  width: 50%;
+}
+.content .business .title h2 {
+  margin: 48px 0 24px 0;
+}
+.content .business .title .more {
+  margin-top: 60px;
+  display: inline-block;
+}
+.content .business .title.motion h2 .char {
+  display: inline-block;
+  animation: slide-up2 0.4s cubic-bezier(0.5, 0, 0.5, 1) both;
+  animation-delay: calc(70ms * var(--char-index));
+}
+.content .business .title.motion p {
+  animation: slide-up2;
+  animation-duration: 1s;
+}
+.content .business ul.list {
+  margin-top: 48px;
+  position: relative;
+  height: 800px;
+}
+.content .business ul.list li {
+  position: absolute;
+}
+.content .business ul.list li.motion .img {
+  width: 500px;
+  transition: width 0.6s;
+}
+.content .business ul.list li:hover .txt {
+  background-color: orange;
+}
+.content .business ul.list li:hover .txt h3, .content .business ul.list li:hover .txt h3 span, .content .business ul.list li:hover .txt p {
+  color: #fff;
+}
+.content .business ul.list li:hover .txt i {
+  border: 1px solid #fff;
+}
+.content .business ul.list li:hover .txt i img {
+  filter: none;
+}
+.content .business ul.list li:hover .img img {
+  transform: scale(1.1);
+}
+.content .business ul.list li .txt {
+  background-color: #fff;
+  border: 2px solid orange;
+  padding: 36px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.content .business ul.list li .txt h3 {
+  font-size: 28px;
+  font-weight: 500;
+}
+.content .business ul.list li .txt h3 span {
+  display: block;
+  color: orange;
+}
+.content .business ul.list li .txt p {
+  margin-top: 2em;
+  font-size: 18px;
+  color: #444;
+}
+.content .business ul.list li .txt i {
+  border: 1px solid orange;
+  display: block;
+  height: 45px;
+  width: 45px;
+  position: absolute;
+  bottom: 36px;
+}
+.content .business ul.list li .txt i img {
+  filter: invert(40%) sepia(77%) saturate(517%) hue-rotate(332deg) brightness(102%) contrast(105%);
+}
+.content .business ul.list li .img {
+  z-index: -1;
+  position: absolute;
+  width: 0;
+  overflow: hidden;
+}
+.content .business ul.list li .img img {
+  height: 100%;
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: all 0.5s;
+}
+.content .business ul.list li:nth-child(1) {
+  position: absolute;
+  left: 50%;
+  transform: translateX(60px);
+  top: -320px;
+}
+.content .business ul.list li:nth-child(1) .txt {
+  height: 400px;
+  width: 260px;
+}
+.content .business ul.list li:nth-child(1) .img {
+  right: -80%;
+  top: -40px;
+  height: 480px;
+}
+.content .business ul.list li:nth-child(1) .img img {
+  width: 400px;
+}
+.content .business ul.list li:nth-child(1).motion .img {
+  width: 400px;
+}
+.content .business ul.list li:nth-child(2) {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-100%);
+  top: 120px;
+}
+.content .business ul.list li:nth-child(2) .txt {
+  height: 300px;
+  width: 400px;
+}
+.content .business ul.list li:nth-child(2) .img {
+  top: 40px;
+  left: calc(-100% + 200px);
+  height: 340px;
+}
+.content .business ul.list li:nth-child(2) .img img {
+  width: 500px;
+}
+.content .business ul.list li:nth-child(2).motion .img {
+  width: 500px;
+}
+.content .business ul.list li:nth-child(3) {
+  position: absolute;
+  left: 50%;
+  transform: translateX(60px);
+  top: 300px;
+}
+.content .business ul.list li:nth-child(3) .txt {
+  height: 400px;
+  width: 260px;
+}
+.content .business ul.list li:nth-child(3) .img {
+  top: 40px;
+  right: -150%;
+  height: 400px;
+}
+.content .business ul.list li:nth-child(3) .img img {
+  width: 600px;
+}
+.content .business ul.list li:nth-child(3).motion .img {
+  width: 600px;
+}
+.content .news {
+  position: relative;
+  overflow: hidden;
+}
+.content .news .point-line {
+  position: absolute;
+  left: 75%;
+  top: -150px;
+  transform: translateX(-50%);
+  transition: all 0.3s;
+  opacity: 0;
+}
+.content .news.motion .point-line {
+  top: 0px;
+  opacity: 1;
+}
+.content .news.motion .inner::before {
+  opacity: 0.5;
+}
+.content .news .title h2 {
+  margin-bottom: 60px;
+}
+.content .news .title.motion h2 .char {
+  display: inline-block;
+  animation: slide-up2 0.4s cubic-bezier(0.5, 0, 0.5, 1) both;
+  animation-delay: calc(70ms * var(--char-index));
+}
+.content .news ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 62px;
+  gap: 24px;
+}
+.content .news ul li {
+  background-color: #f7f7f7;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 24px;
+  width: 75%;
+  border: transparent 1px solid;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.content .news ul li .badge {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  color: #fff;
+  flex-shrink: 0;
+}
+.content .news ul li .badge.notice {
+  background-color: black;
+}
+.content .news ul li .badge.sub {
+  background-color: orange;
+}
+.content .news ul li .txt {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.content .news ul li .txt h3 {
+  color: #333;
+}
+.content .news ul li .txt span {
+  color: #999;
+}
+.content .news ul li .txt p {
+  font-size: 14px;
+}
+.content .news ul li:hover {
+  background-color: #fff;
+  border: orange 1px solid;
+}
+.content .news .inner {
+  padding-bottom: 240px;
+}
+.content .news .inner::after {
+  content: "";
+  background: url("./../img/news.png") no-repeat center/contain;
+  width: 900px;
+  height: 900px;
+  display: block;
+  position: absolute;
+  right: -140px;
+  bottom: -10%;
+  z-index: -1;
+}
+.content .news .inner::before {
+  content: "";
+  background: url("./../img/news2.png") no-repeat center/contain;
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  opacity: 0;
+  transition: all 0.8s;
+}
+.content .career {
+  position: relative;
+  height: 450px;
+}
+.content .career .point-line {
+  position: absolute;
+  left: 25%;
+  transform: translateX(-50%);
+  top: -100px;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.content .career.motion .point-line {
+  top: 0px;
+  opacity: 1;
+}
+.content .career.motion .img {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.content .career .inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.content .career .inner .title {
+  width: 50%;
+}
+.content .career .inner .title h2 {
+  margin: 0;
+  display: block;
+}
+.content .career .inner .title p {
+  color: goldenrod;
+  font-size: 32px;
+}
+.content .career .inner .title.motion h2 .char {
+  display: inline-block;
+  animation: slide-up2 0.4s cubic-bezier(0.5, 0, 0.5, 1) both;
+  animation-delay: calc(70ms * var(--char-index));
+}
+.content .career .inner .title.motion p {
+  animation: slide-up2;
+  animation-duration: 1s;
+}
+.content .career .img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  transform: translateX(50%);
+  opacity: 0;
+  transition: all 0.5s;
+}
+.content .career .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.content .customers {
+  height: 400px;
+  width: 100%;
+  background: url("./../img/customer.jpg") no-repeat center/cover;
+}
+.content .customers .inner {
+  display: flex;
+  gap: 48px;
+}
+.content .customers .inner .title h2 {
+  color: #fff;
+}
+.content .customers .inner .title p {
+  color: #fff;
+}
+.content .customers .inner .title.motion h2 .char {
+  display: inline-block;
+  animation: slide-up2 0.4s cubic-bezier(0.5, 0, 0.5, 1) both;
+  animation-delay: calc(70ms * var(--char-index));
+}
+.content .customers .inner .title.motion p {
+  animation: slide-up2;
+  animation-duration: 1s;
+}
+.content .customers .inner .title.motion .more {
+  color: #fff;
+}
+.content .customers .inner ul {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content .customers .inner ul.motion li {
+  display: inline-block;
+  animation: slide-up2 0.4s cubic-bezier(0.5, 0, 0.5, 1) both;
+  animation-delay: calc(70ms * var(--char-index));
+}
+.content .customers .inner ul li a {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 140px;
+  height: 140px;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  position: relative;
+  font-size: 18px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  transition: all 0.3ss;
+}
+.content .customers .inner ul li a img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.content .customers .inner ul li a:hover {
+  background-color: orange;
+}
 
+footer {
+  background-color: #191a1a;
+  color: #fff;
+  padding: 28px 0;
+}
+footer .inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+footer .inner ul {
+  display: flex;
+  gap: 16px;
+}
+footer .inner ul:nth-child(1) li {
+  font-size: 16px;
+  color: #999;
+  font-weight: 600;
+}
+footer .inner ul:nth-child(2) li {
+  color: #777;
+}
+footer .inner p {
+  color: #777;
+}
+
+/* content animation */
 @keyframes scrollBox-btn {
   0% {
     transform: translateY(-3px);

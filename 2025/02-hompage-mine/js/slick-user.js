@@ -67,3 +67,21 @@ $(function(){
 출처 : https://blog.naver.com/toryu1211/222109123777
 
 */
+
+$(function(){
+  $(".content .information .info-slide .slide").slick({
+    autoplay:true,
+    autoplaySpeed: 5000,
+    dots:true,
+    arrows:false,
+    // slidesToShow:1,
+    infinite:true,
+    variableWidth: true
+  })
+  $(".content .information .info-slide .slide #slick-slide-control10").text("서울 마곡지구 업무용지");
+  $(".content .information .info-slide .slide #slick-slide-control11").text("서울 마곡지구 대방디엠시티2차");
+  $(".content .information .info-slide .slide #slick-slide-control12").text("화성동탄1차 대방디엠시티 더 센텀");
+  $(".content .information .info-slide .slide #slick-slide-control13").text("광주 수완 대방노블랜드6차");
+
+
+})
