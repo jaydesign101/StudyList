@@ -36,9 +36,11 @@
       const text = button.textContent.trim();  // 버튼의 텍스트 가져오기, trim : 빈 공간 삭제
       const view = document.getElementById("view");
       view.classList.remove("animate__animated", `animate__${text}`); // 기존 애니메이션 클래스 제거
-      void view.offsetWidth; // 강제 리플로우(Reflow) 발생 : 클래스가 다시 적용되도록 함 
+      void view.offsetWidth; 
+      // 강제 리플로우(Reflow) 발생 : 클래스가 다시 적용되도록 함 
       // Reflow : 브라우저 요소의 크기, 위치, 배치를 다시 계산하는 과정
-      view.classList.add("animate__animated", `animate__${text}`); // 클릭된 버튼 텍스트를 추가
+      view.className = "animate__animated" // 클래스명 초기화
+      view.classList.add(`animate__${text}`); // 클래스명 추가
     }
   </script>
 </body>

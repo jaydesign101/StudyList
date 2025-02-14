@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scrolla-dem01 (기본)</title>
+
+  <!-- CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="
+  https://cdn.jsdelivr.net/npm/jquery-scrolla@0.0.3/dist/js/jquery.scrolla.min.js
+  "></script>
+
+  <style>
+    body{font-size: 4vw; font-weight: 800; display: flex; flex-direction: column; gap : 10em; width: 100%; overflow-x: hidden;}
+    body div{text-align: center; line-height: 2;}
+    body div:nth-child(1){height: 100vh; font-size: 2vw; display: flex; align-items: center; justify-content: center;}
+    body div:nth-child(2){font-size: 2.4em; width: 100%;}
+    body div.last{margin-bottom: 5em;}
+    
+
+  </style>
+
+</head>
+<body>
+  <div class="animate__animated animate__pulse animate__infinite animate__slow">
+    스크롤하세요
+  </div>
+  <div class="animate" data-animate="animate__flipInY" data-duration="1s" data-iteration="1">
+    SCROLLA
+  </div>
+  <div class="animate" data-animate="animate__fadeInLeft" data-duration="1s" data-iteration="1">
+    SCROLLA는 <br/>스크롤 애니메이션 <br/>제이쿼리 플러그인입니다
+  </div>
+  <div class="animate" data-animate="animate__fadeInDown" data-duration="1s" data-iteration="1">
+    제이쿼리 플로그인이기 때문에 <br/>Scollra 선언 전에 제이쿼리가 <br/>먼저 선언되어야 합니다
+  </div>
+  <div class="animate" data-animate="animate__fadeInUp" data-duration="1s" data-iteration="1">
+    해당 요소에 스크롤하여 도착하면 <br/>data-animate 속성값이 <br/>클래스명에 추가되어 <br/>애니메이션이 실행되는 원리입니다
+  </div>
+  <div  class="animate" data-animate="animate__lightSpeedInRight" data-duration="1s" data-iteration="1">
+    Animate.css의 애니메이션을 <br/>활용할 수 있고 개별로 CSS를 <br/>작성할수도 있어요
+  </div>
+  <div class="animate" data-animate="animate__lightSpeedInLeft" data-duration="1s" data-iteration="1">
+    HTML 요소의 속성값으로 <br/>동작시간, 지연시간, <br/>동작 영역범위, 반복 횟수를 <br/>설정할 수도 있죠!
+  </div>
+  <div class="animate" data-animate="animate__zoomInDown" data-duration="1s" data-iteration="1">
+    모바일에서도 동작할지, <br/>한번만 실행할지,<br/> Animate.css 버전을 <br/>설정할 수도 있습니다
+  </div>
+  <div class="last animate" data-animate="animate__zoomInUp" data-duration="1s" data-iteration="1">
+    버전에 따라 <br/>추가되는 클래스명이 다르니 <br/>동작 방식을 분석하여 <br/>활용합시다 :)
+  </div>
+
+  <script>
+    $(function(){
+        $('.animate').scrolla({
+          mobile: true, 
+          once: false, 
+          animateCssVersion: 3, 
+        });
+    });
+  </script>
+</body>
+</html>
