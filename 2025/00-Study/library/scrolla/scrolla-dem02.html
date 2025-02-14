@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scrolla-dem01 (기본)</title>
+
+  <script src="./../../jQuery/jquery-3.3.1.min.js"></script>
+  <script src="./src/scrolla.jquery.min.js"></script>
+  <!-- CDN
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-scrolla@0.0.3/dist/js/jquery.scrolla.min.js"></script> 
+  -->
+  <style>
+    /* reset.css */
+    *{margin: 0; padding: 0;}
+    body{width: 800px; margin: 0 auto ;}
+    /* layout.css */
+    .loading{height: 100vh; display: flex; font-size: 32px; align-items: center; justify-content: center;}
+    .area{height: 8em; margin-bottom: 8em; font-size: 64px; font-weight: 800; position: relative;} 
+    .area div{position: absolute; overflow: hidden; white-space: nowrap;}
+    .area div:nth-child(1){top:1em; left:1em; } /* 왼쪽에서 슬라이드 효과 */
+    .area div:nth-child(2){top:3em; right:1em;}
+    .area div:nth-child(3){top:5em; right:2.4em;} /* 오른쪽에서 슬라이드 효과 */
+    .area div p{position: absolute; top:0;} 
+    .area div:nth-child(1) p{left:0;} /* 왼쪽에서 슬라이드 효과 */
+    .area div:nth-child(3) p{right:0;} /* 오른쪽에서 슬라이드 효과 */
+    /* animate */
+    .area div:nth-child(1).action{animation: action-side; animation-duration: 2s;}
+    .area div:nth-child(2).action{animation: fade-in; animation-duration: 1.5s;}
+    .area div:nth-child(3).action{animation: action-side; animation-duration: 2s;}
+    @keyframes action-side {
+      0%{width: 0px;}
+      30%{width: 0px;}
+    }
+    @keyframes fade-in {
+      0%{opacity: 0;}
+      30%{opacity: 0;}
+    }
+
+</style>
+</head>
+<body>
+  <div class="loading">
+    스크롤하세요
+  </div>
+  <div class="area">
+      <div class="animate" data-animate="action"><p>SCROLL ANIMATION</p></div>
+      <div class="animate" data-animate="action"><p>THIS IS SCROLLA</p></div>
+      <div class="animate" data-animate="action"><p>with CUSTOM CSS</p></div>
+  </div>
+<script>
+  $(function(){
+    // 크기 설정
+    $('.animate p').each(function() {
+      $(this).parent().css({ 
+        width: this.offsetWidth,
+        height: this.offsetHeight 
+      });
+    });
+    // scrolla 초기화
+    $('.animate').scrolla({
+      mobile: true, 
+      once: false, 
+      animateCssVersion: 3, 
+    });
+  });
+</script>
+</body>
+</html>

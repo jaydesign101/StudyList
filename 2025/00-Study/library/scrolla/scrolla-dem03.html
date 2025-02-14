@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scrolla-dem01 (기본)</title>
+
+  <script src="./../../jQuery/jquery-3.3.1.min.js"></script>
+  <script src="./src/scrolla.jquery.min.js"></script>
+  <script src="./../splitting/src/splitting.min.js"></script>
+<!-- CDN
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-scrolla@0.0.3/dist/js/jquery.scrolla.min.js"></script> 
+  <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+-->
+  <style>
+    /* reset.css */
+    *{margin: 0; padding: 0;}
+    body{width: 800px; margin: 0 auto ;}
+    /* layout.css */
+    .loading{height: 100vh; display: flex; font-size: 32px; align-items: center; justify-content: center;}
+    .area{margin-bottom: 9em; font-size: 64px; font-weight: 800;padding: .5em; box-sizing: border-box;} 
+    .area div{white-space: nowrap; line-height: 2em;}
+    .area div:nth-child(1){text-align: end;}
+    .area div:nth-child(2){text-align: start;}
+    .area div:nth-child(3){text-align: end;}
+    /* animate */
+    .area div.action .char{ 
+      display: inline-block; 
+      animation: splitting-animate .5s cubic-bezier(.5, 0, .5, 1) both; 
+      animation-delay: calc(60ms * var(--char-index)); 
+    }
+    .area div:nth-child(2).action{
+      animation: splitting-animate; animation-duration: 1s;
+    }
+    @keyframes splitting-animate {
+        from { transform: translateY(.5em); opacity: 0; }
+    }
+
+</style>
+</head>
+<body>
+  <div class="loading">
+    스크롤하세요
+  </div>
+  <div class="area">
+      <div data-splitting class="animate" data-animate="action">SCROLL ANIMATION</div>
+      <div class="animate" data-animate="action">THIS IS SCROLLA</div>
+      <div data-splitting class="animate" data-animate="action">with CUSTOM CSS</div>
+  </div>
+<script>
+  $(function(){
+    Splitting(); // Splitting 초기화
+    $('.animate').scrolla({ // scrolla 초기화
+      mobile: true, 
+      once: false, 
+      animateCssVersion: 3, 
+    });
+  });
+</script>
+</body>
+</html>
