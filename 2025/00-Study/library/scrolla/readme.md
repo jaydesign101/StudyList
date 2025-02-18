@@ -117,6 +117,8 @@ $(function(){
 ```
 
 ## 사용 방법3 - 다른 라이브러리 활용 (with Splitting.js)
+- 참고&출처 : [[인프런] J.영 - 실전! 웹사이트제작! Step by Step! (대방산업_InteractiveWeb)](https://www.inflearn.com/course/%EC%8B%A4%EC%A0%84-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%A0%9C%EC%9E%91-%EB%8C%80%EB%B0%A9%EC%82%B0%EC%97%85-interativeweb)
+
 ### 1. jQuery, scrolla.js, splitting.js 연결
 - CDN
 ```
@@ -127,7 +129,7 @@ $(function(){
 
 ### 2. [HTML] Scrolla 적용할 요소에 클래스명, "data-animate" 속성 추가 
 - 애니메이션이 실행될 위치 : Scrolla 적용 요소 ('.animate')
-- Splitting 적용할 요소('.item'): ('.animate > .word > .char')
+- Splitting 적용할 요소('.item'): ('.animate > .word > .char') 로 요소가 분리된다
 ```
 <div class="animate" data-animate="action">
   <div data-splitting class="item">This is Splitting + Scrolla </div>
