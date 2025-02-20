@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slick Slider</title>
+  <script src="./../../jQuery/src/jquery-3.3.1.min.js"></script>
+  <script src="./src/slick.min.js"></script>
+  <link rel="stylesheet" href="./src/slick.css">
+  <style>
+    /* reset.css */
+    *{margin: 0;padding: 0;}
+    ul li{list-style-type: none;}
+    /* layout.css Common */
+    .slick-slider * {border: 1px solid #777;}
+    section{width: 500px; border: 1px solid #000;}
+    .description li::before{ content: '- ';}
+    .description li{text-indent: -.6em; padding-left: 1em;}
+    .slider-s1 .slick-slide{width: 100%;}
+
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <section class="s1">
+    <h1>s1. 기본 슬라이드</h1>
+    <ul class="description">
+      <li>CSS 커스텀하지 않은 Slick</li>
+    </ul>
+      <div class="slider-s1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+  </section>
+
+</div>
+<script>
+  $(function(){
+  $('.slider-s1').slick({
+    dots:true,
+  });
+})
+</script>
+</body>
+</html>
+

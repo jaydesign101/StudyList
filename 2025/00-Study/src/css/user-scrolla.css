@@ -1,9 +1,9 @@
 /* Section-4 */
-#section-4 .view ul.view-content{ display: grid; grid-template-columns: repeat(3, 50px); gap:8px; width: 100%; }
-#section-4 .view ul.view-content li{ height: 50px; background-color: lightblue; border-radius : 4px;}
+#section-5 .view ul.view-content{ display: grid; grid-template-columns: repeat(3, 50px); gap:8px; width: 100%; }
+#section-5 .view ul.view-content li{ height: 50px; background-color: lightblue; border-radius : 4px;}
 
 /* Section-5 */
-.wrap #section-5 .view.motion p .char {
+.wrap #section-6 .view.motion p .char {
   display: inline-block;
   animation: section2-slide-down .2s cubic-bezier(.5, 0, .5, 1) both;
   animation-delay: calc(60ms * var(--char-index));

@@ -10,7 +10,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
     /* 공통 부분 */
-    .wrap{padding: 24px; min-width: 700px; }
+    .wrap{padding: 24px; min-width: 1000px; }
     .wrap a{ color:darkcyan;}
     .wrap a:hover{ text-decoration: underline;}
     .wrap h1{font-size: 18px; font-weight: 600; padding : 4px 0; border-top:2px solid #000; border-bottom:2px solid #000;}
@@ -20,31 +20,32 @@
     .wrap .table-th div:nth-child(3), .wrap section ul.running-btn{ width: 15%; padding: 8px; border-right: 1px solid #000; border-bottom: 1px solid #000; }
     .wrap .table-th div:nth-child(4), .wrap section .view{ flex:1; padding: 8px; border-bottom: 1px solid #000; }
     .wrap section{ display: flex; }
-    .wrap section h2{ display: block; }
+    .wrap section h2{ display: block; flex-shrink:0;}
     .wrap section h2 span{ font-size: 14px; color : #888; display: block; font-weight: 400;}
-    .wrap section ul.description{}
+    .wrap section ul.description{flex-shrink:0;}
     .wrap section ul.description li{position:relative; margin-left: 16px;}
     .wrap section ul.description li::before{ content: '- '; position: absolute; top:2px; left:-10px;}
-    .wrap section ul.running-btn{ display: block; display: flex; flex-wrap: wrap; justify-content: center; }
+    .wrap section ul.running-btn{ flex-shrink:0; display: block; display: flex; flex-wrap: wrap; justify-content: center; }
     .wrap section ul.running-btn li p { font-size: 14px; color: #666;}
     .wrap section ul.running-btn li button{ border: 0; color: #fff; padding: 6px 12px; cursor: pointer;}
     .wrap section ul.running-btn li button:hover{ filter:grayscale(60%);}
-    .wrap section ul.running-btn li:nth-child(1) button{background-color:crimson ;}
+    .wrap section ul.running-btn li:nth-child(1) button{background-color:crimson;}
     .wrap section ul.running-btn li:nth-child(2) button{background-color:darkcyan; display: none;}
     .wrap section .view{ border-bottom: 1px solid #000; font-family: 'Anton'; font-size: 24px; }
   </style>
 
-  <!-- SPLITTING #1, #2 -->
+  <!-- Section #1, #2 : Splitting.js, *css -->
   <link rel="stylesheet" href="./src/css/user-splitting.css">
   <script src="./library/splitting/src/splitting.min.js"></script>
-  <!-- SCROLLA #3, #4, #5 -->
+  <!-- Section #2 : Slick.js, Slick.css, *css -->
+  <link rel="stylesheet" href="./library/slick/src/slick.css">
+  <script src="./library/slick/src/slick.min.js"></script>
+  <link rel="stylesheet" href="./src/css/user-slick.css">
+  <!-- Section #4, #5, #6 : Animate.css, Scrolla.js, *css, *js-->
   <link rel="stylesheet" href="./library/animate/src/animate.min.css">
   <link rel="stylesheet" href="./src/css/user-scrolla.css">
-  <!-- <script src="./library/scrolla/src/scrolla.jquery.min.js"></script> -->
-  <script src="./src/js/user-scrolla.js"></script>
-  <script src="
-  https://cdn.jsdelivr.net/npm/jquery-scrolla@0.0.3/dist/js/jquery.scrolla.min.js
-  "></script>
+  <script src="./library/scrolla/src/scrolla.jquery.min.js"></script>
+
 
   <style>
   </style>
@@ -61,7 +62,7 @@
       <div> Example View</div>
     </section>
     <section id="section-1">
-      <h2>
+      <h2>1. 
         <a href="./library/Splitting/splitting-demo.html">
           Splitting.js
         </a>
@@ -73,24 +74,43 @@
         <li>기본 코드</li>
       </ul>
       <ul class="running-btn">
-        <li><button onclick="$(this).closest('section').find('.view').addClass('on');">START</button></li>
-        <li><button onclick="$(this).closest('section').find('.view').removeClass('on');">RESET</button></li>
+        <li><button onclick="toggleClass(this, true);">START</button></li>
+        <li><button onclick="toggleClass(this, false);">RESET</button></li>
       </ul>
       <div data-splitting class="view">THIS IS SPLITTING!</div>
     </section>
     <section id="section-2">
-      <h2>Splitting.js <span>202502</span></h2>
+      <h2>2. Splitting.js <span>202502</span></h2>
       <ul class="description">
         <li>응용 코드</li>
       </ul>
       <ul class="running-btn">
-        <li><button onclick="$(this).closest('section').find('.view').addClass('on');">START</button></li>
-        <li><button onclick="$(this).closest('section').find('.view').removeClass('on');">RESET</button></li>
+        <li><button onclick="toggleClass(this, true);">START</button></li>
+        <li><button onclick="toggleClass(this, false);">RESET</button></li>
       </ul>
       <div data-splitting class="view">THIS IS SPLITTING!</div>
     </section>
     <section id="section-3">
-      <h2><a href="./library/animate/animate-demo.html">Animate.css</a>
+      <h2>3. <a href="./library/slick/HTML 생성 구조/slick-demo02.html">Slick.js</a>
+        <span>202502</span>
+      </h2>
+      <ul class="description">
+        <li>제이쿼리 기반 캐러셀(슬라이더) 라이브러리</li>
+        <li>옵션 종류가 다양하고, CSS 커스텀이 가능하다</li>
+        <li>{dots:true, <br/>slidesToShow : 3, <br/>centerMode : true, <br/>centerPadding : '10%',}</li>
+      </ul>
+      <ul class="running-btn">
+        <li><button class="slider-prev"> 이전</button></li>
+        <li><button class="slider-next"> 다음</button></li>
+      </ul>
+      <div class="view">
+        <div class="my-slider">
+          <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
+        </div>
+      </div>
+    </section>
+    <section id="section-4">
+      <h2>4. <a href="./library/animate/animate-demo.html">Animate.css</a>
         <span>202502</span>
       </h2>
       <ul class="description">
@@ -100,15 +120,15 @@
       </ul>
       <ul class="running-btn">
         <!-- <li><button>START</button></li> -->
-        <li><button onclick="$(this).closest('section').find('.view > div').addClass('animate__animated animate__bounce animate__infinite animate__faster');">START</button></li>
-        <li><button onclick="$(this).closest('section').find('.view > div').removeClass('animate__animated animate__bounce animate__infinite animate__faster');">RESET</button></li>
+        <li><button onclick="$(this).closest('section').find('.view > div').addClass('animate__animated animate__bounce animate__infinite animate__faster'); toggleClass(this, true)">START</button></li>
+        <li><button onclick="$(this).closest('section').find('.view > div').removeClass('animate__animated animate__bounce animate__infinite animate__faster'); toggleClass(this, false)">RESET</button></li>
       </ul>
       <div class="view">
         <div>THIS IS ANIMATE.CSS</div>
       </div>
     </section>
-    <section id="section-4">
-      <h2><a href="./library/scrolla/scrolla-dem01.html">Scrolla.js</a>
+    <section id="section-5">
+      <h2>5. <a href="./library/scrolla/scrolla-dem01.html">Scrolla.js</a>
         <span>202502</span>
       </h2>
       <ul class="description">
@@ -123,8 +143,8 @@
         <p class="scrolla-animate" data-animate="animate__bounceIn" data-duration="1s" data-offset="100" data-iteration="1">Scrolla + Animate (fadeInUp)</p>
       </div>
     </section>
-    <section id="section-5">
-      <h2><a href="./library/scrolla/scrolla-dem03.html">Scrolla.js</a>
+    <section id="section-6">
+      <h2>6.<a href="./library/scrolla/scrolla-dem03.html">Scrolla.js</a>
         <span>202502</span>
       </h2>
       <ul class="description">
@@ -145,17 +165,40 @@
   
 
   <script> 
-    Splitting(); 
     
+    // 클래스명 on 추가 및 삭제, hide&show
+    function toggleClass(el, add) {
+      let $view = $(el).closest('section').find('.view');
+      let $reverseBtn = $(el).closest('.running-btn').find('button').not(el);
+      add ?  $view.addClass('on') : $view.removeClass('on');
+      $(el).hide();
+      $reverseBtn.show();
+    }
     $(function(){
-      $("section ul.running-btn li:nth-child(1)").on("click",function(){
-        $(this).closest('section').find('ul.running-btn li:nth-child(1) button').hide();
-        $(this).closest('section').find('ul.running-btn li:nth-child(2) button').show();
+
+      // Section #1, #2
+      Splitting(); 
+
+      // Section #3
+      $('#section-3 .my-slider').slick({
+        prevArrow : $('#section-3 .slider-prev'),
+        nextArrow : $('#section-3 .slider-next'),
+        dots:true,
+        slidesToShow : 3,
+        centerMode : true,
+        centerPadding : '10%',
       })
-      $("section ul.running-btn li:nth-child(2)").on("click",function(){
-        $(this).closest('section').find('ul.running-btn li:nth-child(1) button').show();
-        $(this).closest('section').find('ul.running-btn li:nth-child(2) button').hide();
+
+      // Section #4, #5, #6
+      $(function(){
+        $('.scrolla-animate').scrolla({
+          mobile: true, // 모바일시 활성화 여부 (true : 활성화, false : 비활성화)
+          once: false, // 스크롤시 실행 횟수 (true : 한번만, false : 반복)
+          animateCssVersion: 3, // 사용되는 animate.css 버전 (3 or 4)
+        });
       })
+
+
     })
   </script>
 </body>

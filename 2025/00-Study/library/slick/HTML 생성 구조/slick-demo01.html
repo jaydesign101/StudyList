@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slick 데모 1</title>
+  <script src="./../../../jQuery/src/jquery-3.3.1.min.js"></script>
+  <script src="./../src/slick.min.js"></script>
+  <link rel="stylesheet" href="./../src/slick.css">
+  <!-- CDN
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
+ <style>
+  /* reset.css */
+  *{margin: 0; padding: 0;}
+  ul li{list-style-type:none;}
+  /* layout.css */
+  section{width: 100%; max-width: 600px; margin: 0 auto; padding-top: 32px;}
+  section h2 {padding-bottom: 8px; border-bottom: 4px double #000;}
+  section .description{ display: flex; padding: 12px; background-color:aliceblue;} 
+  section .description ul.txt{ width: 30%; transform: translateX(20px);}
+  section .description ul.txt li{list-style-type: circle; font-size: .8em;}
+  section .description .code {padding: 8px 16px; flex: 1; background-color: #fff; border-radius: 4px;}
+  section .slick-slider{margin-top: 8px;  padding: 16px; border: 2px solid #d8d8d8; border-radius: 4px;}
+  section .slick-slider * {border: 1px solid #888;}
+ </style>
+</head>
+<body>
+<section>
+  <h2>Slick 슬라이드 기본</h2>
+  <div class="description">
+    <ul class="txt">
+      <li>CSS 미적용</li>
+    </ul>
+    <div class="code">
+<pre>
+$('.my-slider').slick({
+  dots:true,
+  slidesToShow : 2,
+  slidesToScroll : 2,
+});</pre>
+    </div>
+  </div>
+  <div class="my-slider">
+    <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+  </div>
+</section>
+
+<script>
+$(function(){
+  $('.my-slider').slick({
+    dots:true,
+    slidesToShow : 2,
+    slidesToScroll : 2,
+  });
+})
+</script>
+</body>
+</html>
