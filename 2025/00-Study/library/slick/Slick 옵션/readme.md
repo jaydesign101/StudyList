@@ -232,13 +232,13 @@ $(function(){
     useTransform : true,         // CSS transform 적용 여부 (옛날 방식, CSS의 left/top를 사용)
     easing : 'linear',           // jQuery의 기반 애니메이션 사용 : linear, swing
     fade : false,                // 슬라이드 페이드 효과 적용 여부 (원래는 좌우로 넘어가는 효과임), slidesToShow : 1 적용
-    edgeFriction : 0.15,         // 처음&마지막 슬라이드 저항 효과 적용 여부 : 0~1 사이
+    edgeFriction : 0.15,         // 처음&마지막 슬라이드 스와이프 저항 효과 적용 여부 : 0~1 사이
     waitForAnimate : true,       // 슬라이드 애니메이션이 끝날때까지 슬라이드 전환 금지
 
 /* User Event (사용자 입력&조작) ----------------------------- */
     draggable : true,             // PC 마우스 드래그 활성화 (마우스로 좌우로 이동)
     swipe : true,                 // Mo 터치 활성화 (터치로 이동)
-    touchMove : true,             // Mo 터치로 슬라이드 이동 허용 여부
+    touchMove : true,             // Mo 터치로 슬라이드 잡아서 이동 가능 여부
     touchThreshold : 5,           // 터치로 이전/다음 슬라이드가 전환되는 드래그 길이 설정 (터치감도), 숫자가 클수록 민감도가 높아짐
     swipeToSlide : false,         // 원하는 위치까지 터치로 슬라이드 이동 가능
     focusOnSelect : false,        // 클릭한 슬라이드로 이동

@@ -34,13 +34,13 @@
     .wrap section .view{ border-bottom: 1px solid #000; font-family: 'Anton'; font-size: 24px; }
   </style>
 
-  <!-- Section #1, #2 : Splitting.js, *css -->
-  <link rel="stylesheet" href="./src/css/user-splitting.css">
-  <script src="./library/splitting/src/splitting.min.js"></script>
-  <!-- Section #2 : Slick.js, Slick.css, *css -->
+  <!-- Section #1 : Slick.js, Slick.css, *css -->
   <link rel="stylesheet" href="./library/slick/src/slick.css">
   <script src="./library/slick/src/slick.min.js"></script>
   <link rel="stylesheet" href="./src/css/user-slick.css">
+  <!-- Section #2, #3 : Splitting.js, *css -->
+  <link rel="stylesheet" href="./src/css/user-splitting.css">
+  <script src="./library/splitting/src/splitting.min.js"></script>
   <!-- Section #4, #5, #6 : Animate.css, Scrolla.js, *css, *js-->
   <link rel="stylesheet" href="./library/animate/src/animate.min.css">
   <link rel="stylesheet" href="./src/css/user-scrolla.css">
@@ -62,36 +62,7 @@
       <div> Example View</div>
     </section>
     <section id="section-1">
-      <h2>1. 
-        <a href="./library/Splitting/splitting-demo.html">
-          Splitting.js
-        </a>
-        <span>202502</span>
-      </h2>
-      <ul class="description">
-        <li>요소(텍스트, 그리드)를 분할하여 요소를 생성하여 텍스트 애니메이션를 적용할 수 있는 JS 라이브러리</li>
-        <li>사용방법 : CSS 에 애니메이션 지정하여 텍스트 애니메이션을 줄 수 있음</li>
-        <li>기본 코드</li>
-      </ul>
-      <ul class="running-btn">
-        <li><button onclick="toggleClass(this, true);">START</button></li>
-        <li><button onclick="toggleClass(this, false);">RESET</button></li>
-      </ul>
-      <div data-splitting class="view">THIS IS SPLITTING!</div>
-    </section>
-    <section id="section-2">
-      <h2>2. Splitting.js <span>202502</span></h2>
-      <ul class="description">
-        <li>응용 코드</li>
-      </ul>
-      <ul class="running-btn">
-        <li><button onclick="toggleClass(this, true);">START</button></li>
-        <li><button onclick="toggleClass(this, false);">RESET</button></li>
-      </ul>
-      <div data-splitting class="view">THIS IS SPLITTING!</div>
-    </section>
-    <section id="section-3">
-      <h2>3. <a href="./library/slick/HTML 생성 구조/slick-demo02.html">Slick.js</a>
+      <h2>1. <a href="./library/slick/Slick 옵션/index.html">Slick.js</a>
         <span>202502</span>
       </h2>
       <ul class="description">
@@ -109,6 +80,33 @@
         </div>
       </div>
     </section>
+    <section id="section-2">
+      <h2>2. <a href="./library/Splitting/splitting-demo.html">Splitting.js</a>
+        <span>202502</span>
+      </h2>
+      <ul class="description">
+        <li>요소(텍스트, 그리드)를 분할하여 요소를 생성하여 텍스트 애니메이션를 적용할 수 있는 JS 라이브러리</li>
+        <li>사용방법 : CSS 에 애니메이션 지정하여 텍스트 애니메이션을 줄 수 있음</li>
+        <li>기본 코드</li>
+      </ul>
+      <ul class="running-btn">
+        <li><button onclick="toggleClass(this, true);">START</button></li>
+        <li><button onclick="toggleClass(this, false);">RESET</button></li>
+      </ul>
+      <div data-splitting class="view">THIS IS SPLITTING!</div>
+    </section>
+    <section id="section-3">
+      <h2>3. Splitting.js <span>202502</span></h2>
+      <ul class="description">
+        <li>응용 코드</li>
+      </ul>
+      <ul class="running-btn">
+        <li><button onclick="toggleClass(this, true);">START</button></li>
+        <li><button onclick="toggleClass(this, false);">RESET</button></li>
+      </ul>
+      <div data-splitting class="view">THIS IS SPLITTING!</div>
+    </section>
+
     <section id="section-4">
       <h2>4. <a href="./library/animate/animate-demo.html">Animate.css</a>
         <span>202502</span>
@@ -180,9 +178,9 @@
       Splitting(); 
 
       // Section #3
-      $('#section-3 .my-slider').slick({
-        prevArrow : $('#section-3 .slider-prev'),
-        nextArrow : $('#section-3 .slider-next'),
+      $('#section-1 .my-slider').slick({
+        prevArrow : $('#section-1 .slider-prev'),
+        nextArrow : $('#section-1 .slider-next'),
         dots:true,
         slidesToShow : 3,
         centerMode : true,

@@ -1,6 +1,6 @@
-#section-3 .slick-slider{ width: 360px; position: relative; margin-bottom: 20px;}
-#section-3 .slick-slider .slick-slide{ margin-right: 10px; border-radius: 4px; height: 100px; display: flex; align-items: center; justify-content: center; background-color: skyblue; color: #fff;}
-#section-3 .slick-slider .slick-slide:not(.slick-current){opacity: .5; height: 80px; transform: translateY(20px); }
-#section-3 .slick-slider .slick-dots{display: flex; gap: 4px; position: absolute; bottom: -16px; left:50%; transform: translateX(-50%);}
-#section-3 .slick-slider .slick-dots li{text-indent: -9999px; border:0px; width: 8px; height: 8px; background-color: skyblue; border-radius: 50%; cursor: pointer;}
-#section-3 .slick-slider .slick-dots li.slick-active{background-color: blue;}
+#section-1 .slick-slider{ width: 360px; position: relative; margin-bottom: 20px;}
+#section-1 .slick-slider .slick-slide{ margin-right: 10px; border-radius: 4px; height: 100px; display: flex; align-items: center; justify-content: center; background-color: skyblue; color: #fff;}
+#section-1 .slick-slider .slick-slide:not(.slick-current){opacity: .5; height: 80px; transform: translateY(20px); }
+#section-1 .slick-slider .slick-dots{display: flex; gap: 4px; position: absolute; bottom: -16px; left:50%; transform: translateX(-50%);}
+#section-1 .slick-slider .slick-dots li{text-indent: -9999px; border:0px; width: 8px; height: 8px; background-color: skyblue; border-radius: 50%; cursor: pointer;}
+#section-1 .slick-slider .slick-dots li.slick-active{background-color: blue;}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placeholod.co - 임시 이미지 온라인 서비스</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    h1{text-align: center; line-height: 3;}
+    .wrap{display: grid; grid-template-columns: repeat(4, 1fr); max-width: 1500px; margin: 0 auto; border: .5px solid #000;}
+    .wrap > div { border: .5px solid #000; width: min-content; width: 100%;}
+    .wrap > div > h4 {border-bottom: 1px solid #000;padding: 6px 12px; background-color: #333; color: #fff; font-size: 16px; font-weight: 400;}
+    .wrap > div > p{ background-color: #eee; padding: 6px 12px; border-bottom: 1px solid #999; height: 3.8em;}
+    .wrap > div > .img{padding: 12px; display: flex;align-items: center; justify-content: center;}
+  </style>
+</head>
+<body>
+<!-- <img src="https://placehold.co/너비x높이@배수x/배경색/텍스트색.확장자?text=입력\n텍스트&font=폰트명"> -->
+<h1>Placehold.co - IMAGE</h1>
+<div class="wrap">
+  <div>
+    <h4>[크기] 직사각형</h4>
+    <p>placehold.co/200x300</p>
+    <div class="img"><img src="https://placehold.co/200x300"></div>
+  </div>
+  <div>
+    <h4>[크기] 정사각형</h4>
+    <p>placehold.co/200</p>
+    <div class="img"><img src="https://placehold.co/200"></div>
+  </div>
+  <div>
+    <h4>[Retina] 고해상도 이미지</h4>
+    <!-- 확장자 기본이 svg 이기 때문에 png, jpeg, gif의 확장자를 설정해줘야 한다 -->
+    <p>placehold.co/100@2x/gold/white/png</p>
+    <div class="img"><img src="https://placehold.co/100@2x/gold/white/png"></div>
+  </div>
+  <div>
+    <h4>[Retina] 고해상도 이미지 (+기타)</h4>
+    <p>placehold.co/100@3x/skyblue/white.jpg?text=JPG 100x100</p>
+    <div class="img"><img src="https://placehold.co/100@3x/skyblue/white.jpg?text=JPG 100x100"></div>
+  </div>
+  <div>
+    <h4>[색] 16진수</h4>
+    <p>placehold.co/200/FFBC0F/fff</p>
+    <div class="img"><img src="https://placehold.co/200/FFBC0F/fff"></div>
+  </div>
+  <div>
+    <h4>[색] CSS명</h4>
+    <p>placehold.co/200/skyblue/white</p>
+    <div class="img"><img src="https://placehold.co/200/skyblue/white"></div>
+  </div>
+  <div>
+    <h4>[색] 배경 투명색 (텍스트는 불가능)</h4>
+    <p>placehold.co/200/transparent/red</p>
+    <div class="img"><img src="https://placehold.co/200/transparent/red"></div>
+  </div>
+  <div>
+    <h4>[확장자] 확장자 지정 1 - .</h4>
+    <p>placehold.co/200.svg</p>
+    <div class="img"><img src="https://placehold.co/200.svg"></div>
+  </div>
+  <div>
+    <h4>[확장자] 확장자 지정 2 - / </h4>
+    <!-- png, svg(기본), jpg, gif -->
+    <p>placehold.co/200/gray/white/png?text=PNG</p>
+    <div class="img"><img src="https://placehold.co/200/gray/white/png?text=PNG"></div>
+  </div>
+  <div>
+    <h4>[텍스트] 텍스트 기본 (only Eng)</h4>
+    <p>placehold.co/200?text=Hello\nWorld</p>
+    <div class="img"><img src="https://placehold.co/200?text=Hello\nWorld"></div>
+  </div>
+  <div>
+    <h4>[텍스트] 텍스트 (+ 색)</h4>
+    <p>placehold.co/200/orange/white?text=Hello</p>
+    <div class="img"><img src="https://placehold.co/200/orange/white?text=Hello"></div>
+  </div>
+  <div>
+    <h4>[텍스트] 텍스트 폰트</h4>
+    <p>placehold.co/200/green/white?text=Hello&font=Playfair Display</p>
+    <!-- Lato, Lora, Montserrat, Noto Sans, Open Sans, Oswald, Playfair Display, Poppins, PT Sans, Raleway, Roboto, Source Sans Pro -->
+    <div class="img"><img src="https://placehold.co/200/green/white?text=Hello&font=Playfair Display"></div>
+  </div>
+</div>
+</body>
+</html>

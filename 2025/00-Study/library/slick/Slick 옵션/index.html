@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slick Slider 옵션</title>
+  <!-- CDN -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"> -->
+  <script src="./../../../jQuery/src/jquery-3.3.1.min.js"></script>
+  <script src="./../src/slick.min.js"></script>
+  <link rel="stylesheet" href="./../src/slick.css">
+  <style>
+    /* reset.css */
+    *{margin: 0;padding: 0;}
+    ul li{list-style-type: none;}
+    /* Layout.css */
+    body{display: flex; justify-content: center; background-color: #f8f8f8;}
+    .wrap{max-width: 1500px; margin: 0 auto; display: grid; grid-template-areas: 'option view'; grid-template-columns: 2fr 3fr;gap: 12px; box-sizing: border-box; height: 90vh; margin-top: 5vh;}
+    .option, .view{ background-color: #fff; box-shadow: 2px 2px 2px rgba(0,0,0,.1); border: 1px solid #eee; border-radius: 10px; padding: 12px 18px; box-sizing: border-box; overflow: auto;}
+
+    .option{overflow: auto; grid-area: option;}
+    .option .category{overflow: hidden; max-height: 40px; transition:  max-height .8s; border-bottom: 1px double #555; padding: 4px 0;} 
+    .option .category.on{max-height: 2000px;}
+    .option .category > h2{padding: 6px 0; font-size: 18px; font-weight: 600; position: relative;}
+    .option .category > h2 > button {background-color: darkcyan; color: #fff; padding: 2px 6px 4px 6px; border: 0px; border-radius: 2px; cursor: pointer;}
+    .option .category > h2 > button:hover{filter: brightness(1.1);}
+    .option .category > span{font-size: .8em; color: #555; background-color: #f3f3f3; width: 100%; display: inline-block; padding: 4px; border-radius: 4px; margin-top: 4px; margin-bottom: 8px;}
+    .option .category > div > h3{ border-bottom: 1px solid #ddd; padding: 4px 0; font-weight: 500; font-size: 16px;}
+    .option .category > div > span{font-size: .8em; color: #555;}
+    .option .category > div > ul{display: flex; margin:6px 6px 12px 0; flex-wrap: wrap;}
+    .option .category > div > ul li{position: relative;}
+    .option .category > div > ul li.default::after{content: 'Default'; color : crimson; position: absolute; font-size: 8px; border-radius: 4px; top: -3px; left:-9px;}
+    .option .category > div > ul li label {padding:4px 0;cursor: pointer; width: 100px; display: block; white-space: nowrap;}
+    .option .category > div > ul li label:hover{color:darkcyan;}
+    .option .category > div > ul li label input{margin-right:8px; }
+    
+
+    .view{grid-area: view; padding: 24px 24px;}
+    .view .my-slider{border: dashed 1px #cfcfcf; border-radius: 16px; padding: 16px; position: relative; }
+    .view .my-slider .slick-slide{width: 100%; position: relative; margin: 4px; }
+    .view .my-slider .slick-slide img{ width: 100%; max-height: 70vh; object-fit: cover; border-radius: 12px;}
+    .view .my-slider .slick-arrow{position: absolute; bottom:-60px; padding: 8px 16px; border: 0; font-size: 18px; color: #fff; font-family: 600; border-radius: 4px; cursor: pointer; z-index: 1; width: 120px;}
+    .view .my-slider .slick-arrow:hover{filter:brightness(1.1);}
+    .view .my-slider .slick-prev{left:0; background-color: darkcyan; }
+    .view .my-slider .slick-next{right:0; background-color: crimson; }
+    .view .my-slider .slick-arrow.slick-disabled{background-color: gray;}
+    .view .my-slider .slick-dots{display: flex; gap: 4px; position: absolute; bottom : 12px; left:50%; transform: translateX(-50%);}
+    .view .my-slider .slick-dots li button{ border: 0; text-indent: -9999px; overflow: hidden; width: 10px; height: 10px; background-color: rgba(0, 0, 0, .5); border-radius: 60px; transition: background-color .3s;}
+    .view .my-slider .slick-dots li.slick-active button{background-color: #000;}
+  </style>
+</head>
+
+<body>
+  <!-- 안되는 옵션 : rows -->
+<div class="wrap">
+  <section class="option">
+    <div class="category">
+      <h2>Layout (레이아웃) <button onclick='toggleArea(this)'>토글</button></h2>
+      <span>제외 옵션 : slide, rows, slidesPerRow</span>
+      <div class="slidesToShow">
+        <span>영역에 보여지는 슬라이드 수</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="slidesToShow" checked>1</label></li>
+          <li><label><input type="radio" name="slidesToShow">2</label></li>
+          <li><label><input type="radio" name="slidesToShow">3</label></li>
+        </ul>
+      </div>
+      <div class="slidesToScroll">
+        <span>전환되는 슬라이드 수</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="slidesToScroll" checked>1</label></li>
+          <li><label><input type="radio" name="slidesToScroll">2</label></li>
+          <li><label><input type="radio" name="slidesToScroll">3</label></li>
+        </ul>
+      </div>
+      <div class="centerMode">
+        <span>가운데 슬라이드 활성화</span>
+        <ul>
+          <li><label><input type="radio" name="centerMode" >true</label></li>
+          <li class="default"><label><input type="radio" name="centerMode" checked>false</label></li>
+        </ul>
+      </div>
+      <div class="centerPadding">
+        <span>centerMode일때, 좌우 여백, centerMode:true일때만 사용 가능</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="centerPadding" disabled checked>0px</label></li>
+          <li><label><input type="radio" name="centerPadding" disabled>30px</label></li>
+          <li><label><input type="radio" name="centerPadding" disabled>10%</label></li>
+          <li><label><input type="radio" name="centerPadding" disabled>30%</label></li>
+        </ul>
+      </div>
+      <div class="variableWidth">
+        <span>너비 각각 지정</span>
+        <ul>
+          <li><label><input type="radio" name="variableWidth">true</label></li>
+          <li  class="default"><label><input type="radio" name="variableWidth" checked>false</label></li>
+        </ul>
+      </div>
+      <div class="vertical">
+        <span>세로 스크롤</span>
+        <ul>
+          <li><label><input type="radio" name="vertical">true</label></li>
+          <li  class="default"><label><input type="radio" name="vertical" checked>false</label></li>
+        </ul>
+      </div>
+      <div class="verticalSwiping">
+        <span>세로로 스와이프</span>
+        <ul>
+          <li><label><input type="radio" name="verticalSwiping">true</label></li>
+          <li  class="default"><label><input type="radio" name="verticalSwiping" checked>false</label></li>
+        </ul>
+      </div>
+      <div class="adaptiveHeight">
+        <span>높이 자동맞춤</span>
+        <ul>
+          <li><label><input type="radio" name="adaptiveHeight">true</label></li>
+          <li  class="default"><label><input type="radio" name="adaptiveHeight" checked>false</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category">
+      <h2>Action (동작) <button onclick='toggleArea(this)'>토글</button></h2>
+      <span>제외 옵션 : initialSlide</span>
+      <div class="infinite">
+        <span>무한 슬라이드</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="infinite" checked>true</label></li>
+          <li><label><input type="radio" name="infinite">false</label></li>
+        </ul>
+      </div>
+      <div class="speed">
+        <span>슬라이드 전환 속도</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="speed" checked>300</label></li>
+          <li><label><input type="radio" name="speed">1000</label></li>
+        </ul>
+      </div>
+      <div class="autoplay">
+        <span>슬라이드 자동 전환</span>
+        <ul>
+          <li><label><input type="radio" name="autoplay">true</label></li>
+          <li class="default"><label><input type="radio" name="autoplay" checked>false</label></li>
+        </ul>
+      </div>
+      <div class="autoplaySpeed">
+        <span>슬라이드 자동 전환 속도</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="autoplaySpeed" checked disabled>3000</label></li>
+          <li><label><input type="radio" name="autoplaySpeed" disabled>500</label></li>
+        </ul>
+      </div>
+      <div class="pauseOnFocus">
+        <span>포커스시 멈춤</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="pauseOnFocus" checked>true</label></li>
+          <li><label><input type="radio" name="pauseOnFocus">false</label></li>
+        </ul>
+      </div>
+      <div class="pauseOnHover">
+        <span>영역 호버시 멈춤</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="pauseOnHover" checked>true</label></li>
+          <li><label><input type="radio" name="pauseOnHover">false</label></li>
+        </ul>
+      </div>
+      <div class="pauseOnDotsHover">
+        <span>인디케이터 호버시 멈춤</span>
+        <ul>
+          <li><label><input type="radio" name="pauseOnDotsHover" disabled>true</label></li>
+          <li class="default"><label><input type="radio" name="pauseOnDotsHover" checked disabled>false</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category">
+      <h2>Dots& Arrow <button onclick='toggleArea(this)'>토글</button></h2>
+      <span>제외 옵션 : dotsClass, appendDots, customPaging, appendArrows, prevArrow, nextArrow</span>
+      <div class="dots">
+        <span>인디케이터</span>
+        <ul>
+          <li><label><input type="radio" name="dots">true</label></li>
+          <li class="default"><label><input type="radio" name="dots" checked>false</label></li>
+        </ul>
+      </div>
+      <div class="arrows">
+        <span>이전&다음 버튼</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="arrows" checked>true</label></li>
+          <li><label><input type="radio" name="arrows">false</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category">
+      <h2>Effect(효과) <button onclick='toggleArea(this)'>토글</button></h2>
+      <div class="cssEase">
+        <span>속도 종류</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="cssEase" checked>ease</label></li>
+          <li><label><input type="radio" name="cssEase">linear</label></li>
+          <li><label><input type="radio" name="cssEase">ease-in</label></li>
+          <li><label><input type="radio" name="cssEase">ease-out</label></li>
+          <li><label><input type="radio" name="cssEase">ease-in-out</label></li>
+        </ul>
+      </div>
+      <div class="fade">
+        <span>페이드 전환 효과, {slidesToShow:1} 적용 필요</span>
+        <ul>
+          <li><label><input type="radio" name="fade">true</label></li>
+          <li class="default"><label><input type="radio" name="fade" checked>false</label></li>
+        </ul>
+      </div>
+      <div class="edgeFriction">
+        <span>처음&마지막 슬라이드 스와이프 저항 효과 여부, {infinite:false} 적용 필요</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="edgeFriction" checked disabled>0.15</label></li>
+          <li><label><input type="radio" name="edgeFriction" disabled>0</label></li>
+          <li><label><input type="radio" name="edgeFriction" disabled>0.5</label></li>
+          <li><label><input type="radio" name="edgeFriction" disabled>1</label></li>
+        </ul>
+      </div>
+      <div class="waitForAnimate">
+        <span>애니메이션이 끝날때까지 슬라이드 전환 금지</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="waitForAnimate" checked>true</label></li>
+          <li><label><input type="radio" name="waitForAnimate">false</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category">
+      <h2>User Event <button onclick='toggleArea(this)'>토글</button></h2>
+      <div class="draggable">
+        <span>PC 마우스 드래그 활성화 (마우스로 좌우로 이동)</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="draggable" checked>true</label></li>
+          <li><label><input type="radio" name="draggable">false</label></li>
+        </ul>
+      </div>
+      <div class="swipe">
+        <span>Mo 터치 활성화 (터치로 이동)</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="swipe" checked>true</label></li>
+          <li><label><input type="radio" name="swipe">false</label></li>
+        </ul>
+      </div>
+      <div class="touchMove">
+        <span>Mo 터치로 슬라이드 잡아서 이동 가능 여부</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="touchMove" checked>true</label></li>
+          <li><label><input type="radio" name="touchMove">false</label></li>
+        </ul>
+      </div>
+      <div class="touchThreshold">
+        <span>슬라이드가 전환되는 드래그 길이 설정</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="touchThreshold" checked>5</label></li>
+          <li><label><input type="radio" name="touchThreshold">2</label></li>
+          <li><label><input type="radio" name="touchThreshold">50</label></li>
+          <li><label><input type="radio" name="touchThreshold">100</label></li>
+        </ul>
+      </div>
+      <div class="swipeToSlide">
+        <span>원하는 위치까지 터치로 슬라이드 이동 가능</span>
+        <ul>
+          <li><label><input type="radio" name="swipeToSlide">true</label></li>
+          <li class="default"><label><input type="radio" name="swipeToSlide" checked>false</label></li>
+        </ul>
+      </div>
+      <div class="focusOnSelect">
+        <span>클릭한 슬라이드로 이동</span>
+        <ul>
+          <li><label><input type="radio" name="focusOnSelect">true</label></li>
+          <li class="default"><label><input type="radio" name="focusOnSelect" checked>false</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category">
+      <h2>Responsive (반응형) <button onclick='toggleArea(this)'>토글</button></h2>
+      <span>제외 옵션 : responsive, respondTo, mobileFirst</span>
+    </div>
+
+    <div class="category">
+      <h2> 기타 <button onclick='toggleArea(this)'>토글</button></h2>
+      <span>제외 옵션 : asNavFor, lazyLoad, zIndex</span>
+      <div class="accessibility">
+        <span>웹 접근성 여부</span>
+        <ul>
+          <li class="default"><label><input type="radio" name="accessibility" checked>true</label></li>
+          <li><label><input type="radio" name="accessibility">false</label></li>
+        </ul>
+      </div>
+      <div class="rtl">
+        <span>(Right To Left) 슬라이더 방향 (왼쪽에서 오른쪽으로), 부모에 dir="rlt"이라는 속성이 설정 되어 있어야 함</span>
+        <ul>
+          <li><label><input type="radio" name="rtl">true</label></li>
+          <li class="default"><label><input type="radio" name="rtl" checked>false</label></li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+  <section class="view">
+    <div class="my-slider" >
+      <div><img src="http://placehold.co/180x160/orange/ffffff?text=Slide-1" alt="더미 이미지"></div>
+      <div><img src="http://placehold.co/300x250/darkcyan/ffffff?text=Slide-2" alt="더미 이미지"></div>
+      <div><img src="http://placehold.co/300x200/skyblue/ffffff?text=Slide-3" alt="더미 이미지"></div>
+      <div><img src="http://placehold.co/180x190/crimson/ffffff?text=Slide-4" alt="더미 이미지"></div>
+      <div><img src="http://placehold.co/260x130/plum/ffffff?text=Slide-5" alt="더미 이미지"></div>
+      <div><img src="http://placehold.co/200x140/green/ffffff?text=Slide-6" alt="더미 이미지"></div>
+      <div><img src="http://placehold.co/180x160/skyblue/ffffff?text=Slide-7" alt="더미 이미지"></div>
+      <div><img src="http://placehold.co/240x100/crimson/ffffff?text=Slide-8" alt="더미 이미지"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+function toggleArea(e) {
+    // e는 버튼이 클릭된 요소
+    var category = e.closest('.category');
+    category.classList.toggle('on');
+}
+$(function(){
+
+  // 슬릭 슬라이더 초기화
+  var slider = $('.my-slider').slick({
+  });
+
+
+  // 클래스명 옵션 설정
+  $('.option > .category > div').each(function(){
+    let className = $(this).attr('class'); // 클래스명 가져오기
+
+    $(this).prepend(`<h3>${className}</h3>`)
+  });
+
+  // 옵션 설정
+  $('.option > .category input[type="radio"]').change(function() {
+    var option = $(this).attr('name'); // 옵션
+    var opValue = $(this).closest('label').text().trim(); // 옵션값
+    opValue = convertValue(opValue);
+    slider.slick('slickSetOption', option, opValue, true); // 해당 옵션 변경, slickSetOption : 옵션 설정
+    slider.slick('refresh'); // 슬라이더 리플래시 
+
+    // 개별 옵션 설정
+    if(option == 'centerMode') {
+      $('.centerPadding ul li label input').prop('disabled', opValue !== true);
+    }
+    if(option == 'variableWidth' && opValue==true){
+      $('.view .my-slider .slick-slide').css({'width' : 'auto'})
+      $('.view .my-slider .slick-slide img').css({'width' : 'auto'})
+    }else if(option == 'variableWidth' && opValue==false){
+      $('.view .my-slider .slick-slide').css({'width' : '100%'})
+      $('.view .my-slider .slick-slide img').css({'width' : '100%'})
+    }
+    if(option == 'autoplay') {
+      $('.autoplaySpeed ul li label input').prop('disabled', opValue !== true);
+    }
+    if(option == 'dots') {
+      $('.pauseOnDotsHover ul li label input').prop('disabled', opValue !== true);
+    }
+    if(option == 'slidesToShow') {
+      $('.fade ul li label input').prop('disabled', opValue !== 1);
+    }
+    if(option == 'infinite') {
+      $('.edgeFriction ul li label input').prop('disabled', opValue !== false);
+    }
+    if(option == 'rtl' && opValue==true){
+      $('.my-slider').attr("dir", "rtl");
+    }else if(option == 'rtl' && opValue==false){
+      $('.my-slider').removeAttr("dir");
+    }
+
+    optionCheck();
+  });
+
+  // 데이터 변환
+  function convertValue(value){
+    if (value === 'true') return true; // Boolean 값으로 변환
+    if (value === 'false') return false; // Boolean 값으로 변환
+    if (!isNaN(value)) { return parseFloat(value); } // 숫자형으로 변환 (소수 포함)
+    return value; // 그 외의 경우: 문자열 그대로 반환
+  }
+
+  function optionCheck(){
+    var options = {
+      slidesToShow: slider.slick('getOption', 'slidesToShow'),
+      slidesToScroll: slider.slick('getOption', 'slidesToScroll'),
+      centerMode: slider.slick('getOption', 'centerMode'),
+      centerPadding: slider.slick('getOption', 'centerPadding'),
+      variableWidth: slider.slick('getOption', 'variableWidth'),
+      vertical: slider.slick('getOption', 'vertical'),
+      verticalSwiping: slider.slick('getOption', 'verticalSwiping'),
+      adaptiveHeight: slider.slick('getOption', 'adaptiveHeight'),
+
+      infinite: slider.slick('getOption', 'infinite'),
+      speed: slider.slick('getOption', 'speed'),
+      autoplay: slider.slick('getOption', 'autoplay'),
+      autoplaySpeed: slider.slick('getOption', 'autoplaySpeed'),
+      pauseOnFocus: slider.slick('getOption', 'pauseOnFocus'),
+      pauseOnHover: slider.slick('getOption', 'pauseOnHover'),
+      pauseOnDotsHover: slider.slick('getOption', 'pauseOnDotsHover'),
+
+      dots: slider.slick('getOption', 'dots'),
+      arrows: slider.slick('getOption', 'arrows'),
+
+      cssEase: slider.slick('getOption', 'cssEase'),
+      fade: slider.slick('getOption', 'fade'),
+      edgeFriction: slider.slick('getOption', 'edgeFriction'),
+      waitForAnimate: slider.slick('getOption', 'waitForAnimate'),
+
+      draggable: slider.slick('getOption', 'draggable'),
+      swipe: slider.slick('getOption', 'swipe'),
+      touchMove: slider.slick('getOption', 'touchMove'),
+      touchThreshold: slider.slick('getOption', 'touchThreshold'),
+      swipeToSlide: slider.slick('getOption', 'swipeToSlide'),
+      focusOnSelect: slider.slick('getOption', 'focusOnSelect'),
+
+      accessibility: slider.slick('getOption', 'accessibility'),
+    }; 
+    console.log(options); // 콘솔 출력
+  }
+  optionCheck();
+});
+</script>
+</body>
+</html>
