@@ -5,27 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
+  <script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>-->
+
+  <style>
+    
+  </style>
+  
   <link rel="stylesheet" href="./src/flatpickr.min.css">
   <script src="./src/flatpickr.js"></script>
+  <script src="./src/l10n/ko.js"></script>
+  
 </head>
 <body>
-  <input type="text" id="datePicker" placeholder="날짜 선택">
+  <input type="date" placeholder="날짜 선택" value="2024-02-14">
+  <input type="text" class="datePicker" placeholder="날짜 선택">
+  <div class="datePicker">ddd</div>
 <script>
-flatpickr("#datePicker", {
-            dateFormat: "Y-m-d",  // 날짜 형식
-            locale: {
-                firstDayOfWeek: 0,  // 첫 번째 날을 일요일로 설정 (옵션)
-                weekdays: {
-                    shorthand: ["일", "월", "화", "수", "목", "금", "토"],  // 요일 약어
-                    longhand: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]  // 요일 전체 이름
-                },
-                months: {
-                    shorthand: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],  // 월 약어
-                    longhand: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]  // 월 전체 이름
-                }
-            }
-        });
+flatpickr(".datePicker", {
+  dateFormat: "Y-m-d",  // 날짜 형식
+  locale: 'ko',
+  onChange: function(selectedDates, dateStr, instance) {
+    console.log(selectedDates, dateStr, instance); // [Date 객체, Date 객체]
+  }
+});
 </script>
 </body>
 </html>

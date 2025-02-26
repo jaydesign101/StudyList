@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기본 날짜 입력 필드</title>
+  <style>
+    /* reset.css */
+    *{margin: 0; padding: 0;}
+    /* layout.css */
+    .wrap{max-width: 1200px; min-width: 800px; margin: 0 auto; padding: 24px;}
+    .result{margin-bottom: 24px; display: flex; gap: 24px;}
+    .result button{border:0;}
+    .header{border-top: 2px solid #111;}
+    .group{ display: flex; border-bottom: 1px solid #333;}
+    .group > div {padding: 12px; border-right: 1px solid #ddd; box-sizing: border-box;}
+    .header > div{padding: 4px 12px; font-size: 14px; font-weight: 600;}
+    .group > div:last-child{border: 0px;}
+    .group > div:nth-child(1){width: 12%;}
+    .group > div:nth-child(2){width: 18%;}
+    .group > div:nth-child(3){width: 30%;}
+    .group > div:nth-child(4){width: 40%;}
+    .group .title {font-size: 16px; font-weight: 500;}
+    .group .view{font-size: 12px; font-family: 300;}
+    .group .view input{margin: .5em 0; padding: 4px 8px; border: 1px solid #c7c7c7; border-radius: 4px;}
+    .group .view button:hover {filter: brightness(1.2);}
+    .group .discription {font-size: 13px; padding-left: 30px; line-height: 1.8;}
+    .group .code {font-size: 12px; line-height: 2;}
+    .group .code span{color: crimson;}
+    button{padding: 3px 8px; border: 0px; background-color: darkcyan; color: #fff; border-radius: 2px; cursor: pointer;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="result">
+    <button onclick="resultPrint()"> 지정한 날짜 호출 </button>
+    <div id="print"></div>
+  </div>
+  <div class="group header">
+    <div>TITLE</div>
+    <div>VIEW</div>
+    <div>CODE</div>
+    <div>설명</div>
+  </div>
+  <div class="group">
+    <div class="title">기본</div>
+    <div class="view">
+      <label for="date1">날짜 입력 필드 :</label> <br/>
+      <input type="date" id="date1" >
+    </div>
+    <div class="code">
+      &lt;label for="date1">날짜 입력 필드 :&lt;/label> <br/>
+      &lt;input <span>type="date"</span> id="date1" >
+    </div>
+    <div class="discription">
+      <ul>
+        <li>HTML에서 날짜를 입력받기 위한 기본 요소</li>
+        <li>달력 UI, 날짜를 선택하는 편리한 방법을 제공한다</li>
+        <li>달력 아이콘을 클릭해야만 달력 UI 팝업이 호출된다</li>
+        <li>Safari 9 이전 브라우저는 미지원(달력 UI가 호출되지 않음)</li>
+        <li>기본 달력 UI는 브라우저에서 자동으로 제공되는 기본 CSS 스타일로, CSS 커스터마이즈하는건 어렵다</li>
+      </ul>
+    </div>
+  </div>
+  <div class="group">
+    <div class="title">최소&최대 날짜 지정</div>
+    <div class="view">
+      <label for="date2">날짜 입력 필드 :</label> <br/>
+      <input type="date" id="date2" min="2025-01-01" max="2025-01-25">
+    </div>
+    <div class="code">
+      &lt;label for="date2">날짜 입력 필드 :&lt;/label> <br/>
+      &lt;input type="date" id="date2" <br/><span>min="2025-01-01" max="2025-01-25"</span> >
+    </div>
+    <div class="discription">
+      <ul>
+        <li>날짜 선택 범위 시작 날짜 : min 속성 추가</li>
+        <li>날짜 선택 범위 종료 날짜 : max 속성 추가</li>
+        <li>옵션 값 포맷 :  "YYYY-MM-DD"</li>
+      </ul>
+    </div>
+  </div>
+  <div class="group">
+    <div class="title">초기값 지정</div>
+    <div class="view">
+      <label for="date3">날짜 입력 필드 :</label> <br/>
+      <input type="date" id="date3" value="2025-01-14">
+    </div>
+    <div class="code">
+      &lt;label for="date3">날짜 입력 필드 :&lt;/label> <br/>
+      &lt;input type="date" id="date3" <br/><span>value="2025-01-14"</span> >
+    </div>
+    <div class="discription">
+      <ul>
+        <li>초기값 지정 : vlaue 속성 추가</li>
+        <li>옵션 값 포맷 :  "YYYY-MM-DD"</li>
+      </ul>
+    </div>
+  </div>
+  <div class="group">
+    <div class="title">필수 입력 지정</div>
+    <div class="view">
+      <form>
+        <label for="date4">날짜 입력 필드 :</label> <br/>
+        <input type="date" id="date4" required>
+        <button type="submit">제출</button>
+      </form>
+    </div>
+    <div class="code">
+      &lt;form><br/>
+      &nbsp;&nbsp;&nbsp;&lt;label for="date4">날짜 입력 필드 :&lt;/label> <br/>
+      &nbsp;&nbsp;&nbsp;&lt;input type="date" id="date4" <span>required</span> ><br/>
+      &nbsp;&nbsp;&nbsp;&lt;button type="submit">제출&lt;/button><br/>
+      &lt;/form>
+    </div>
+    <div class="discription">
+      <ul>
+        <li>필수값 지정 : required 속성 추가</li>
+        <li>제출 버튼 클릭시 "이 입력란을 작성하세요"라는 알림 팝업이 뜸</li>
+        <li>form 요소와 button 요소를 같이 사용해야 함</li>
+      </ul>
+    </div>
+  </div>
+  <div class="group">
+    <div class="title">읽기 전용</div>
+    <div class="view">
+      <label for="date5">날짜 입력 필드 :</label> <br/>
+      <input type="date" id="date5" readonly>
+    </div>
+    <div class="code">
+      &lt;label for="date5">날짜 입력 필드 :&lt;/label> <br/>
+      &lt;input type="date" id="date5" <span>readonly</span> >
+    </div>
+    <div class="discription">
+      <ul>
+        <li>읽기 전용 지정 : readonly 속성 추가</li>
+        <li>사용자가 날짜를 변경할 수 없다</li>
+      </ul>
+    </div>
+  </div>
+  <div class="group">
+    <div class="title">비활성화 지정</div>
+    <div class="view">
+      <label for="date6">날짜 입력 필드 :</label> <br/>
+      <input type="date" id="date6" disabled>
+    </div>
+    <div class="code">
+      &lt;label for="date6">날짜 입력 필드 :&lt;/label> <br/>
+      &lt;input type="date" id="date6" <span>disabled</span> >
+    </div>
+    <div class="discription">
+      <ul>
+        <li>비활성화 지정 : disabled 속성 추가</li>
+        <li>비활성화 처리 되며, 사용자는 날짜를 선택할 수 없다</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+     function resultPrint(){
+      let dateInput1 = document.getElementById("date1").value || "값 없음";
+      let dateInput2 = document.getElementById("date2").value || "값 없음";
+      let dateInput3 = document.getElementById("date3").value || "값 없음";
+      let dateInput4 = document.getElementById("date4").value || "값 없음";
+      let dateInput5 = document.getElementById("date5").value || "값 없음";
+      let dateInput6 = document.getElementById("date6").value || "값 없음";
+      document.getElementById("print").textContent = 
+        `1 : ${dateInput1}, 2 : ${dateInput2}, 3 : ${dateInput3}, 4 : ${dateInput4}, 5 : ${dateInput5},  6 : ${dateInput6},`;
+     }
+  </script>
+</div>
+</body>
+</html>

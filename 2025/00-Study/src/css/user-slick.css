@@ -1,4 +1,4 @@
-#section-1 .slick-slider{ width: 360px; position: relative; margin-bottom: 20px;}
+#section-1 .slick-slider{ position: relative; margin-bottom: 20px; }
 #section-1 .slick-slider .slick-slide{ margin-right: 10px; border-radius: 4px; height: 100px; display: flex; align-items: center; justify-content: center; background-color: skyblue; color: #fff;}
 #section-1 .slick-slider .slick-slide:not(.slick-current){opacity: .5; height: 80px; transform: translateY(20px); }
 #section-1 .slick-slider .slick-dots{display: flex; gap: 4px; position: absolute; bottom: -16px; left:50%; transform: translateX(-50%);}

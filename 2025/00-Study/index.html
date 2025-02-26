@@ -31,7 +31,7 @@
     .wrap section ul.running-btn li button:hover{ filter:grayscale(60%);}
     .wrap section ul.running-btn li:nth-child(1) button{background-color:crimson;}
     .wrap section ul.running-btn li:nth-child(2) button{background-color:darkcyan; display: none;}
-    .wrap section .view{ border-bottom: 1px solid #000; font-family: 'Anton'; font-size: 24px; }
+    .wrap section .view{ border-bottom: 1px solid #000; font-family: 'Anton'; font-size: 24px; overflow: auto;}
   </style>
 
   <!-- Section #1 : Slick.js, Slick.css, *css -->
@@ -74,7 +74,7 @@
         <li><button class="slider-prev"> 이전</button></li>
         <li><button class="slider-next"> 다음</button></li>
       </ul>
-      <div class="view">
+      <div class="view" style="min-height: 160px;">
         <div class="my-slider">
           <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
         </div>
