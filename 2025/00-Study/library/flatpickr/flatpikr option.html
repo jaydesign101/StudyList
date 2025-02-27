@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlatPickr 옵션</title>
+  <link rel="stylesheet" href="./src/flatpickr.min.css">
+  <script src="./src/flatpickr.js"></script>
+  <script src="./src/l10n/ko.js"></script>
+  <!-- FONT AWESOME  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* reset.css */
+    *{margin: 0; padding: 0;}
+    li{list-style-type: none;}
+    /* layout.css */
+    .type-theme{display: flex; gap: 12px; align-items: center; justify-content: center; background-color: #f5f5f5; padding: 16px; flex-wrap: wrap;}
+    .type-theme h2{font-size: 1.2em; font-weight: 500; margin-right: 8px;}
+    .type-theme button{border : 0; background-color: #fff; padding : 6px 12px; border-radius: 8px; cursor: pointer; box-shadow: 0px 2px 2px rgba(0,0,0,.2);}
+    .type-theme button:hover{background-color: #444; color : #fff;}
+    .type-theme button.on{background-color: #444; color : #fff;}
+    .wrap{max-width: 1200px; margin: 24px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 240px)); gap: 12px; justify-content: center;}
+    .wrap > section{height: min-content; display: flex; flex-direction: column; gap: 8px; border: 1px solid #d8d8d8; border-radius: 4px;}
+    .wrap > section > label {margin: 8px 8px 0 8px; }
+    .wrap > section > input {margin: 0px 8px 4px 8px; padding: 4px 8px; box-sizing: border-box; border : 1px #dbdbdb solid; border-radius: 4px;}
+    .wrap > section > p {font-size: .8em; background-color: #eee; padding: 4px 8px;}
+    /* FlatPickr CSS */
+    #date12{padding: 0px 8px;}
+    #date12 > p{margin: 8px 0;}
+    #date12 > button {border : 1px solid #c4c4c4 ; background-color: #fff; width: 24px; height: 24px; cursor: pointer;}
+    #date12 > button:hover i{color: cadetblue;}
+    #date12 > button i {font-size: 16px;}
+    #date12 > input {margin-top: 8px; padding: 4px 8px; box-sizing: border-box; border : 1px #dbdbdb solid; border-radius: 4px;}
+  </style>
+</head>
+<body>
+<div class="top">
+  <ul class="type-theme">
+    <li><h2>테마</h2></li>
+    <li><button class="on">Default</button></li>
+    <li><button>dark</button></li>
+    <li><button>airbnb</button></li>
+    <li><button>material_blue</button></li>
+    <li><button>material_green</button></li>
+    <li><button>material_orange</button></li>
+    <li><button>material_red</button></li>
+    <li><button>confetti</button></li>
+  </ul>
+</div>
+<div class="wrap">
+  <section>
+    <label for="date1">기본</label> 
+    <input type="text" id="date1" placeholder="날짜 입력"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date2">날짜+시간<br/>표시&저장 데이터 형식</label> 
+    <input type="text" id="date2" placeholder="날짜 입력"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date3">시간</label> 
+    <input type="text" id="date3" placeholder="날짜 입력"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date4">24 시간<br/>최소&최대 시간</label> 
+    <input type="text" id="date4" placeholder="날짜 입력"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date5">초기값<br/>최소&최대 날짜</label> 
+    <input type="text" id="date5"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date6">비활성화(함수, 배열)</label> 
+    <input type="text" id="date6" placeholder="날짜 입력"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date7">비활성화(범위)</label> 
+    <input type="text" id="date7"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date8"> 다중 선택 (초기값)</label> 
+    <input type="text" id="date8"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date9"> 범위 선택(초기값)</label> 
+    <input type="text" id="date9"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date10"> 주 index 표시</label> 
+    <input type="text" id="date10"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label for="date11">로컬라이징(현지화, 한국)</label> 
+    <input type="text" id="date11"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <div id="date12">
+      <p>외부 요소 활용</p>
+      <button title="토글" data-toggle><i class="fa-solid fa-calendar" ></i></button>
+      <button title="삭제" data-clear><i class="fa-solid fa-trash"></i></button>
+      <button title="열기" data-open><i class="fa-solid fa-door-open" ></i></button>
+      <button title="닫기" data-close><i class="fa-solid fa-door-closed" ></i></button>    
+      <input type="text" data-input> 
+    </div>
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label> 달력 UI 표시</label> 
+    <input type="text" id="date13"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('.type-theme button').forEach(button => {
+  button.addEventListener('click', function() {
+    // 기본 클래스를 제거
+    document.querySelectorAll('.type-theme button').forEach(btn => btn.classList.remove('on'));
+    this.classList.add('on');
+
+    // 기존 테마 모두 삭제
+    document.querySelectorAll('link[href*="./src/theme/"]')?.forEach(link => link.remove());
+
+    let theme = this.textContent.toLowerCase();
+    let linkTag;
+
+    if (theme === "기본") { // 기본 테마는 아무것도 추가할 필요 없음
+      return;
+    }else{ // 요소 생성 및 속성값 지정
+      linkTag = document.createElement('link');
+      linkTag.rel = 'stylesheet';
+      linkTag.href = `./src/theme/${theme}.css`
+    }
+    if (linkTag) { // 요소 추가
+      document.head.appendChild(linkTag);
+    }
+
+  });
+});
+
+//  Flatpickr 옵션
+flatpickr("#date1", {
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date2", {
+  enableTime : true,
+  dateFormat : "Y.m.d K h:i",
+  altInput :true,
+  altFormat : "Y년 n월 j일 G:i (D)",
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date3", {
+  enableTime : true,
+  noCalendar : true,
+  dateFormat : "K h:i",
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date4", {
+  enableTime : true,
+  noCalendar : true,
+  time_24hr : true,
+  minDate : "09:30",
+  maxDate : "18:30",
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date5", {
+  defaultDate : "today",
+  minDate : new Date().fp_incr(-3),
+  maxDate : new Date().fp_incr(3),
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date6", {
+  minDate : "today",
+  disable: [ // 일, 월요일 비활성화
+    function(date) {return (date.getDay() === 0 || date.getDay() === 6);}, 
+    "today"
+  ],
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date7", {
+  defaultDate : "2025-01-01",
+  disable: [ // 일, 월요일 비활성화
+    {from : "2025-01-08", to : "2025-01-14" },
+    {from : "2025-01-22", to : "2025-01-28" },
+  ],
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date8", {
+  defaultDate : ["2025-01-01", "2025-01-07"],
+  mode : "multiple",
+  conjunction  : " & ",
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date9", {
+  defaultDate : ["2025-01-01", "2025-01-07"],
+  mode : "range",
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date10", {
+  weekNumbers : true,
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date11", {
+  locale : "ko",
+  enableTime : true,
+  dateFormat: "Y년 m월 d일 (l) H:i",
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date12", {
+  wrap : true,
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date13", {
+  inline : true,
+ 
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+</script>
+</body>
+</html>
