@@ -1,5 +1,5 @@
-    /* section-2 : 기본 코드 */
-    .wrap #section-2 .view.on .char {/* inline-block 추가해야함! */
+    /* section-4 : 기본 코드 */
+    .wrap #section-4 .view.on .char {/* inline-block 추가해야함! */
       display: inline-block;
       animation: section1-slide-in  .3s cubic-bezier(.5, 0, .5, 1) both;
       animation-delay: calc(60ms * var(--char-index));
@@ -10,8 +10,8 @@
         opacity: 0;
       }
     }
-    /* section-3 : 슬라이드 다운, 응용코드  */
-    .wrap #section-3 .view.on .char {
+    /* section-5 : 슬라이드 다운, 응용코드  */
+    .wrap #section-5 .view.on .char {
       display: inline-block;
       animation: section2-slide-down .2s cubic-bezier(.5, 0, .5, 1) both;
       animation-delay: calc(60ms * var(--char-index));

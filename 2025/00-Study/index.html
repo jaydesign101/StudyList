@@ -32,27 +32,29 @@
     .wrap section ul.running-btn li:nth-child(1) button{background-color:crimson;}
     .wrap section ul.running-btn li:nth-child(2) button{background-color:darkcyan; display: none;}
     .wrap section .view{ border-bottom: 1px solid #000; font-family: 'Anton'; font-size: 24px; overflow: auto;}
+    /* Form 요소 */
+    .wrap section input {padding: 6px 8px; border: 1px solid #b1b1b1; border-radius: 5px; font-size: .7em; font-weight: 400; cursor: pointer;}
   </style>
 
   <!-- Section #1 : Slick.js, Slick.css, *css -->
   <link rel="stylesheet" href="./library/slick/src/slick.css">
   <script src="./library/slick/src/slick.min.js"></script>
   <link rel="stylesheet" href="./src/css/user-slick.css">
-  <!-- Section #2, #3 : Splitting.js, *css -->
+  <!-- Section #3 : FlatPickr -->
+  <link rel="stylesheet" href="./library/flatpickr/src/flatpickr.min.css">
+  <script src="./library/flatpickr/src/flatpickr.js"></script>
+  <script src="./library/flatpickr/src/l10n/ko.js"></script>
+  <!-- Section #4, #5 : Splitting.js, *css -->
   <link rel="stylesheet" href="./src/css/user-splitting.css">
   <script src="./library/splitting/src/splitting.min.js"></script>
-  <!-- Section #4, #5, #6 : Animate.css, Scrolla.js, *css, *js-->
+  <!-- Section #6, #7, #8 : Animate.css, Scrolla.js, *css, *js-->
   <link rel="stylesheet" href="./library/animate/src/animate.min.css">
   <link rel="stylesheet" href="./src/css/user-scrolla.css">
   <script src="./library/scrolla/src/scrolla.jquery.min.js"></script>
-
-
   <style>
   </style>
 </head>
 <body>
-  
-  
   <div class="wrap">
     <h1>2025 STUDY LIST</h1>
     <section class="table-th">
@@ -81,7 +83,44 @@
       </div>
     </section>
     <section id="section-2">
-      <h2>2. <a href="./library/Splitting/splitting-demo.html">Splitting.js</a>
+      <h2>2. <a href="./library/flatpickr/defaultDate.html"> &lt;input type="date"></a>
+        <span>202502</span>
+      </h2>
+      <ul class="description">
+        <li>HTML에서 제공하는 날짜 입력 필드</li>
+        <li>달력 아이콘 버튼을 클릭해야만 달력 UI 가 호출된다</li>
+        <li>브라우저마다 스타일이 다르고 브라우저 버전마다 지원 여부가 다르다(Safari 9 이전 : 미지원)</li>
+        <li>CSS 커스텀이 어렵다</li>
+      </ul>
+      <ul class="running-btn">
+        <li>-</li>
+      </ul>
+      <div class="view">
+        <label for="dateField">
+          <input type="date" id="dateField" value="2025-01-01">
+        </label>
+      </div>
+    </section>
+    <section id="section-3">
+      <h2>3. <a href="./library/flatpickr/index.html"> Flatpickr</a>
+        <span>202502</span>
+      </h2>
+      <ul class="description">
+        <li>날짜 및 시간 입력 JS 라이브러리</li>
+        <li>옵션이 다양하고 다양한 CSS 테마가 있다</li>
+        <li>CSS 커스텀이 용이하다</li>
+      </ul>
+      <ul class="running-btn">
+        <li>-</li>
+      </ul>
+      <div class="view">
+        <label for="flatpickr1">
+          <input type="text" id="flatpickr1">
+        </label>
+      </div>
+    </section>
+    <section id="section-4">
+      <h2>4. <a href="./library/Splitting/splitting-demo.html">Splitting.js</a>
         <span>202502</span>
       </h2>
       <ul class="description">
@@ -95,8 +134,8 @@
       </ul>
       <div data-splitting class="view">THIS IS SPLITTING!</div>
     </section>
-    <section id="section-3">
-      <h2>3. Splitting.js <span>202502</span></h2>
+    <section id="section-5">
+      <h2>5. Splitting.js <span>202502</span></h2>
       <ul class="description">
         <li>응용 코드</li>
       </ul>
@@ -106,9 +145,8 @@
       </ul>
       <div data-splitting class="view">THIS IS SPLITTING!</div>
     </section>
-
-    <section id="section-4">
-      <h2>4. <a href="./library/animate/animate-demo.html">Animate.css</a>
+    <section id="section-6">
+      <h2>6. <a href="./library/animate/animate-demo.html">Animate.css</a>
         <span>202502</span>
       </h2>
       <ul class="description">
@@ -125,8 +163,8 @@
         <div>THIS IS ANIMATE.CSS</div>
       </div>
     </section>
-    <section id="section-5">
-      <h2>5. <a href="./library/scrolla/scrolla-dem01.html">Scrolla.js</a>
+    <section id="section-7">
+      <h2>7. <a href="./library/scrolla/scrolla-dem01.html">Scrolla.js</a>
         <span>202502</span>
       </h2>
       <ul class="description">
@@ -141,8 +179,8 @@
         <p class="scrolla-animate" data-animate="animate__bounceIn" data-duration="1s" data-offset="100" data-iteration="1">Scrolla + Animate (fadeInUp)</p>
       </div>
     </section>
-    <section id="section-6">
-      <h2>6.<a href="./library/scrolla/scrolla-dem03.html">Scrolla.js</a>
+    <section id="section-8">
+      <h2>8.<a href="./library/scrolla/scrolla-dem03.html">Scrolla.js</a>
         <span>202502</span>
       </h2>
       <ul class="description">
@@ -174,10 +212,10 @@
     }
     $(function(){
 
-      // Section #1, #2
+      // Section #4, #5
       Splitting(); 
 
-      // Section #3
+      // Section #1
       $('#section-1 .my-slider').slick({
         prevArrow : $('#section-1 .slider-prev'),
         nextArrow : $('#section-1 .slider-next'),
@@ -187,13 +225,22 @@
         centerPadding : '10%',
       })
 
-      // Section #4, #5, #6
-      $(function(){
-        $('.scrolla-animate').scrolla({
-          mobile: true, // 모바일시 활성화 여부 (true : 활성화, false : 비활성화)
-          once: false, // 스크롤시 실행 횟수 (true : 한번만, false : 반복)
-          animateCssVersion: 3, // 사용되는 animate.css 버전 (3 or 4)
-        });
+      // Section #7, #8
+      $('.scrolla-animate').scrolla({
+        mobile: true, // 모바일시 활성화 여부 (true : 활성화, false : 비활성화)
+        once: false, // 스크롤시 실행 횟수 (true : 한번만, false : 반복)
+        animateCssVersion: 3, // 사용되는 animate.css 버전 (3 or 4)
+      });
+
+      // Section #3
+      flatpickr("#flatpickr1",{
+        locale : 'ko',
+        enableTime : true,
+        altInput : true,
+        altFormat : "Y년 n월 j일 G:i (D)",
+        defaultDate : "today",
+        minDate : "today",
+        maxDate : new Date().fp_incr(7),
       })
 
 

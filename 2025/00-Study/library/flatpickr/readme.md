@@ -38,7 +38,7 @@ flatpickr("#아이디명", {
 ### time_24hr (24시간제 표시)
 - [boolean] : true, false (기본)
 - PM/AM 선택 영역이 사라지고 00 ~ 24 시간으로 표시
-### noCalendar (달력 UI 표시)
+### noCalendar (달력 UI 미표시)
 - [boolean] : true, false (기본)
   - true : 달력 UI 미표시
   - false : 달력 UI 표시
@@ -126,7 +126,7 @@ flatpickr("#아이디명", {
 - ```{mode : "multiple"}``` 일때 사용 가능
 - [string] : 구분자 문자열
   ```{ mode: "multiple", conjunction: " and " }``` → "2025-01-14 and 2025-02-14" 반환
-### inline (달력 UI 열리 여부)
+### inline (달력 UI 열림 여부)
 - [boolean] : true, false (기본)
 - true 설정시 달력 UI가 열린 상태가 된다
 ### weekNumbers (주 index)
@@ -157,7 +157,7 @@ flatpickr(".flatpickr", {wrap: true});
 ---
 
 ## 추가 옵션
-- flatpickr.min.css, flatpickr.js 와 함께 다른 파일을 추가 연결하여 사용할 수 있는 옵션
+- flatpickr.min.css, flatpickr.js 와 함께 다른 파일(모듈)을 추가 연결하여 사용할 수 있는 옵션
 ### 로컬라이징 (현지화)
 - 달력은 언어에 맞게 세팅할 수 있다 (한국 : ko)
 - flatpickr.js 선언 후 연결해야 한다
@@ -180,6 +180,31 @@ flatpickr(".flatpickr", {
 - CDN (CSS 테마 파일 연결)
 ```
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/테마이름.css">
+```
+
+---
+
+## 옵션 템플릿
+```
+flatpickr(".flatpickr", {
+  enableTime : false,         // 시간 활성화
+  time_24hr : false,          // 24시간 표시
+  noCalendar : false,         // 달력 UI 미표시
+  dateFormat : "Y-m-d H:i",   // 데이터 포맷 (날짜 형식)
+  altInput : false,           // 입력 필드 형식 표현
+  altFormat : "Fj, Y",        // 입력 필드 날짜 형식, {altInput : true}로 되어 있어야 한다
+  defaultDate : null,         // 초기값
+  minDate : null,             // 시작 날짜
+  maxDate : null,             // 종료 날짜
+  disable : [],               // 비활성화
+  enable : undefined,         // 활성화
+  mode : "single",            // 모드 "multiple", "range"
+  conjunction : null,         // 다중 선택("multiple") 모드 구분자
+  inline : false,             // 달력 UI 열림 여부
+  weekNumbers : false,        // 주 index 활성화
+  wrap : false,               // 외부 요소 사용 여부 (data-input, data-toggle, data-open, data-close)
+  locale : null,              // 현지화
+});
 ```
 
 ---

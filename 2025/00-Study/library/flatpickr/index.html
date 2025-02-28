@@ -121,6 +121,7 @@
   </section>
 </div>
 
+
 <script>
 document.querySelectorAll('.type-theme button').forEach(button => {
   button.addEventListener('click', function() {
@@ -246,11 +247,11 @@ flatpickr("#date12", {
 });
 flatpickr("#date13", {
   inline : true,
- 
   onChange: function(selectedDates, dateStr, instance) {
     instance.element.closest('section').querySelector(".print").innerText = dateStr;
   }
 });
+
 </script>
 </body>
 </html>
