@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlatPickr 옵션</title>
+    <!-- Flatpickr CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+  <style>
+    /* reset.css */
+    *{margin: 0; padding: 0;}
+    li{list-style-type: none;}
+    /* layout.css */
+    .type-theme{display: flex; gap: 12px; align-items: center; justify-content: center; background-color: #f5f5f5; padding: 16px; flex-wrap: wrap;}
+    .type-theme h2{font-size: 1.2em; font-weight: 500; margin-right: 8px;}
+    .type-theme button{border : 0; background-color: #fff; padding : 6px 12px; border-radius: 8px; cursor: pointer; box-shadow: 0px 2px 2px rgba(0,0,0,.2);}
+    .type-theme button:hover{background-color: #444; color : #fff;}
+    .type-theme button.on{background-color: #444; color : #fff;}
+    .wrap{max-width: 1200px; margin: 24px auto; display: flex; gap: 100px; justify-content: center;}
+    .wrap > section{height: min-content; display: flex; flex-direction: column; gap: 8px; border: 1px solid #d8d8d8; border-radius: 4px;}
+    .wrap > section > label {margin: 8px 8px 0 8px; }
+    .wrap > section > input {margin: 0px 8px 4px 8px; padding: 4px 8px; box-sizing: border-box; border : 1px #dbdbdb solid; border-radius: 4px;}
+    .wrap > section > p {font-size: .8em; background-color: #eee; padding: 4px 8px;}  
+  </style>
+</head>
+<body>
+<div class="top">
+  <ul class="type-theme">
+    <li><h2>테마</h2></li>
+    <li><button class="on">Default</button></li>
+    <li><button>dark</button></li>
+    <li><button>airbnb</button></li>
+    <li><button>material_blue</button></li>
+    <li><button>material_green</button></li>
+    <li><button>material_orange</button></li>
+    <li><button>material_red</button></li>
+    <li><button>confetti</button></li>
+  </ul>
+</div>
+<div class="wrap">
+  <section>
+    <label> [기본] 달력 UI 표시</label> 
+    <input type="text" id="date1"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+  <section>
+    <label> [한국] 달력 UI 표시</label> 
+    <input type="text" id="date2"> 
+    <p>Data : <span class="print"></span></p>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('.type-theme button').forEach(button => {
+  button.addEventListener('click', function() {
+    // 기본 클래스를 제거
+    document.querySelectorAll('.type-theme button').forEach(btn => btn.classList.remove('on'));
+    this.classList.add('on');
+    // 기존 테마 모두 삭제
+    document.querySelectorAll('link[href*="./src/theme/"]')?.forEach(link => link.remove());
+    let theme = this.textContent.toLowerCase();
+    let linkTag;
+    if (theme === "기본") { // 기본 테마는 아무것도 추가할 필요 없음
+      return;
+    }else{ // 요소 생성 및 속성값 지정
+      linkTag = document.createElement('link');
+      linkTag.rel = 'stylesheet';
+      linkTag.href = `./src/theme/${theme}.css`
+    }
+    if (linkTag) { // 요소 추가
+      document.head.appendChild(linkTag);
+    }
+  });
+});
+
+//  Flatpickr 옵션
+flatpickr("#date1", {
+  inline : true,
+  enableTime : true,
+  dateFormat: "Y년 m월 d일 (l) H:i",
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+flatpickr("#date2", {
+  inline : true,
+  locale : 'ko',
+  enableTime : true,
+  dateFormat: "Y년 m월 d일 (l) H:i",
+  onChange: function(selectedDates, dateStr, instance) {
+    instance.element.closest('section').querySelector(".print").innerText = dateStr;
+  }
+});
+</script>
+</body>
+</html>

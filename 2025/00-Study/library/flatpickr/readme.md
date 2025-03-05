@@ -158,7 +158,7 @@ flatpickr(".flatpickr", {wrap: true});
 
 ## 추가 옵션
 - flatpickr.min.css, flatpickr.js 와 함께 다른 파일(모듈)을 추가 연결하여 사용할 수 있는 옵션
-### 로컬라이징 (현지화)
+### Localization (현지화)
 - 달력은 언어에 맞게 세팅할 수 있다 (한국 : ko)
 - flatpickr.js 선언 후 연결해야 한다
 - CDN (언어 파일 연결)
@@ -171,7 +171,7 @@ flatpickr(".flatpickr", {
   locale : "ko"
 });
 ```
-### 테마
+### Themes (테마)
 - 여러 CSS 테마를 선택하여 적용할 수 있다
 - flatpickr.min.css 선언 후 연결해야 한다 (연결만 하면 바로 적용됨)
 - 테마 이름 : dark, material_blue, material_green, material_red, material_orange, confetti, airbnb
@@ -203,28 +203,45 @@ flatpickr(".flatpickr", {
   inline : false,             // 달력 UI 열림 여부
   weekNumbers : false,        // 주 index 활성화
   wrap : false,               // 외부 요소 사용 여부 (data-input, data-toggle, data-open, data-close)
-  locale : null,              // 현지화
+  locale : null,              // 현지화 (추가 옵션)
 });
 ```
 
 ---
 
 ## 사용자 이벤트
+### 작성 방법
+- flatpickr 초기화 구문 내부에 작성한다
 ```
+flatpickr(".flatpickr", {
   onChange: function(selectedDates, dateStr, instance) {
     // 실행 함수
   }
+});
+
 ```
 ### 이벤트 & 훅
 - onChange : 날짜를 선택 및 변경 될때 트리거(발생)
 - onReady : flatpickr 가 준비상태가 되면 트리거 (초기 한번만 실행)
 - onOpen & onClose : 달력 UI가 오픈/닫힐 시 트리거
 - onMonthChange & onYearChange : 날짜가 월/년 이 선택 및 변경 될때 트리거
-### 이벤트 핸들러 (이벤트 발생시 실행되는 함수)
+### 콜백 함수
 ```
 function(selectedDates, dateStr, instance) { ... }
 ```
+- Flatpickr 이벤트 훅에서 실행되는 콜백 함수
 - 사용자 이벤트 동작시 함수가 실행되고, 이 함수는 3개의 인수를 받는다
-  - selectedDates : 객체 상태로 날짜 반환
-  - dateStr : 문자열 상태로 상태로 날짜 반환
-  - instance : 다양한 메서드와 속성을 포함한 flatpickr객체 반환
+  - selectedDates : [배열] 객체 배열 상태로 날짜 반환
+  - dateStr : [문자열] 문자열 상태로 상태로 날짜 반환
+  - instance : [객체] 다양한 메서드와 속성을 포함한 flatpickr객체 반환
+- instance 메서드
+  - 인스턴스 메서드는 객체의 특정 인스턴스에 대해 호출되는 메서드
+  - instance.clear() : 날짜 초기화
+  - instance.setDate() : 날짜 설정
+   - instance.jumpToDate() : 특정 날짜로 이동
+  - instance.destroy() : flatpickr 인스턴스 파괴
+  - instance.getDate() : 선택된 날짜 가져오기
+  - instance.set("optionName", value) : flatpickr 옵션을 동적으로 설정
+  - instance.close() : 달력 닫기
+  - instance.open() : 달력 열기
+  - instance.redraw() : 달력 다시 그리기

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlatPickr 옵션</title>
+    <!-- Flatpickr CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <style>
+    /* reset.css */
+    *{margin: 0; padding: 0;}
+    li{list-style-type: none;}
+    /* layout.css */
+    .wrap{width: 600px; margin: 0 auto; padding-top: 5vh; display: flex; gap: 24px; height: 40vh; min-height: 400px;}
+    .date-picker{width: 40%;}
+    .date-picker input{padding: 4px 8px; border: 1px solid #b3b3b3; border-radius: 5px; width: 100%; box-sizing: border-box; margin-top: 12px;}
+    .data-log{width: 60%; background-color: #f7f7f7; padding: 12px; border-radius: 8px; display: flex; flex-direction: column; font-size: .8em; font-weight: 400;}
+    .data-log > div:first-child{background-color: #fff; border-radius: 4px; padding: 4px 8px; }
+    .data-log > div.log{flex: 1; margin-top: 8px; overflow-y: auto; color: #666;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section class="date-picker"> 
+    <label> [기본] 달력 UI 표시</label> <br/>
+    <input type="text" id="date1"> 
+  </section>
+  <section class="data-log">
+    <div>dateStr : <span class="print"></span></div>
+    <div class="log"></div>
+  </section>
+</div>
+<script>
+flatpickr("#date1", {
+  dateFormat: "Y.m.d",
+  enableTime : true,
+  altInput : true,
+  altFormat : "Y년 m월 d일 (l)",
+  onReady: function(selectedDates, dateStr, instance) {
+    document.querySelector(".log").innerHTML += "onReady : flatpickr 준비 완료<br>";
+    console.log("onReady", selectedDates, dateStr, instance)
+    instance.clear(); // 날짜 초기화
+  },
+  onOpen: function(selectedDates, dateStr, instance) {
+    document.querySelector(".log").innerHTML += "onOpen : 달력 UI 오픈<br>";
+    console.log("onOpen", selectedDates, dateStr, instance);
+    instance.setDate("today"); // 오늘 날짜 설정
+    instance.set("dateFormat", "Y.m.d") // 옵션 동적 설정
+  },
+  onClose: function(selectedDates, dateStr, instance) {
+    document.querySelector(".log").innerHTML += "onClose : 달력 UI 닫기<br>";
+    console.log("onClose", selectedDates, dateStr, instance);
+  },
+  onMonthChange: function(selectedDates, dateStr, instance) {
+    document.querySelector(".log").innerHTML += "onMonthChange : 월 변경<br>";
+    console.log("onMonthChange", selectedDates, dateStr, instance)
+    instance.set("dateFormat", "m월 변경") // 옵션 동적 설정
+  }, 
+  onYearChange: function(selectedDates, dateStr, instance) {
+    document.querySelector(".log").innerHTML += "onYearChange : 년 변경<br>";
+    console.log("onYearChange", selectedDates, dateStr, instance)
+    instance.set("dateFormat", "Y년 변경") // 옵션 동적 설정
+  },
+  onChange: function(selectedDates, dateStr, instance) {
+    document.querySelector(".log").innerHTML += "onChange : 달력 UI 선택 및 변경 <br/> - selectedDates : " + selectedDates +"<br/>";
+    document.querySelector(".print").innerText = dateStr;
+    console.log("onChange", selectedDates, dateStr, instance)
+    instance.close(); // {enableTime : true} 설정하면 달력이 자동으로 닫히지 않는다. 하지만 이를 설정하면 자동으로 닫힘
+  }
+});
+</script>
+</body>
+</html>
