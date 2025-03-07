@@ -1,0 +1,80 @@
+/*defaultSlider*/
+.slider-top{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  .btn-all-item{
+    font-size: 13px;
+    color: #444;
+    cursor: pointer;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+#defaultSlider{
+  position: relative;
+  [class*="btn-"]{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 6px;
+    color: #cecece;
+    font-size: 12px;
+    z-index: 1;
+    &.btn-prev{
+      left:-2.4em;
+    }
+    &.btn-next{
+      right:-2.4em;
+    }
+    &:hover{
+      background-color: #efefef;
+    }
+    &.active{
+      color: #444;
+    }
+  }
+  .slider{
+    overflow: hidden;
+    .item-wrap{
+      display: flex;
+      .item{
+        flex-shrink: 0;
+        height: auto;
+        aspect-ratio: 5/3;
+        background-color: gold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 600;
+        font-size: 20px;
+        border-radius: 6px;
+        &:nth-child(odd){
+          background-color: skyblue;
+        }
+      }
+    }
+  }
+  .pagination{
+    display: flex;
+    gap: 4px;
+    position:absolute;
+    top:calc(100% + 10px);
+    left:50%;
+    transform: translateX(-50%);
+    .pagination-bullet{
+      cursor: pointer;
+      background-color: rgba(0,0,0, .3);
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      &.active{
+        background-color: rgba(0,0,0, .6);
+      }
+    }
+  }
+}

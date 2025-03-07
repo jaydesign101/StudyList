@@ -1,0 +1,81 @@
+/*defaultSlider*/
+.slider-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.slider-top .btn-all-item {
+  font-size: 13px;
+  color: #444;
+  cursor: pointer;
+}
+.slider-top .btn-all-item:hover {
+  text-decoration: underline;
+}
+
+#defaultSlider {
+  position: relative;
+}
+#defaultSlider [class*=btn-] {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 6px;
+  color: #cecece;
+  font-size: 12px;
+  z-index: 1;
+}
+#defaultSlider [class*=btn-].btn-prev {
+  left: -2.4em;
+}
+#defaultSlider [class*=btn-].btn-next {
+  right: -2.4em;
+}
+#defaultSlider [class*=btn-]:hover {
+  background-color: #efefef;
+}
+#defaultSlider [class*=btn-].active {
+  color: #444;
+}
+#defaultSlider .slider {
+  overflow: hidden;
+}
+#defaultSlider .slider .item-wrap {
+  display: flex;
+}
+#defaultSlider .slider .item-wrap .item {
+  flex-shrink: 0;
+  height: auto;
+  aspect-ratio: 5/3;
+  background-color: gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 6px;
+}
+#defaultSlider .slider .item-wrap .item:nth-child(odd) {
+  background-color: skyblue;
+}
+#defaultSlider .pagination {
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+#defaultSlider .pagination .pagination-bullet {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+#defaultSlider .pagination .pagination-bullet.active {
+  background-color: rgba(0, 0, 0, 0.6);
+}

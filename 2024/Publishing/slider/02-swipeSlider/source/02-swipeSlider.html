@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>defaultSlider</title>
+  <style>
+  /* reset */
+  @import url("https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-weight: 300;
+    font-size: 16px;
+    color: #000;
+    background-color: #fff;
+  }
+
+  ul li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* font */
+  /* commom */
+  .inner {
+    width: 100%;
+    max-width: calc(1280px + 80px);
+    margin: 0 auto;
+    padding: 40px;
+  }
+
+  body {
+    font-family: "Noto Sans KR", sans-serif;
+    line-height: 1.5;
+  }
+
+  /*defaultSlider*/
+  .slider-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  }
+  .slider-top .btn-all-item {
+    font-size: 13px;
+    color: #444;
+    cursor: pointer;
+  }
+  .slider-top .btn-all-item:hover {
+    text-decoration: underline;
+  }
+
+  #defaultSlider {
+    position: relative;
+  }
+  #defaultSlider [class*=btn-] {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 6px;
+    color: #cecece;
+    font-size: 12px;
+    z-index: 1;
+  }
+  #defaultSlider [class*=btn-].btn-prev {
+    left: -2.4em;
+  }
+  #defaultSlider [class*=btn-].btn-next {
+    right: -2.4em;
+  }
+  #defaultSlider [class*=btn-]:hover {
+    background-color: #efefef;
+  }
+  #defaultSlider [class*=btn-].active {
+    color: #444;
+  }
+  #defaultSlider .slider {
+    overflow: hidden;
+  }
+  #defaultSlider .slider .item-wrap {
+    display: flex;
+  }
+  #defaultSlider .slider .item-wrap .item {
+    flex-shrink: 0;
+    height: auto;
+    aspect-ratio: 5/3;
+    background-color: gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 6px;
+  }
+  #defaultSlider .slider .item-wrap .item:nth-child(odd) {
+    background-color: skyblue;
+  }
+  #defaultSlider .pagination {
+    display: flex;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #defaultSlider .pagination .pagination-bullet {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+  }
+  #defaultSlider .pagination .pagination-bullet.active {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  </style>
+</head>
+<body>
+  <div class="inner">
+    <div class="slider-top">
+      <h4>Title</h4>
+      <p class="btn-all-item">전체보기</p>
+    </div>
+    <div id="defaultSlider">
+      <div class="slider">
+        <div class="item-wrap">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+          <div class="item">5</div>
+          <div class="item">6</div>
+          <div class="item">7</div>
+          <div class="item">8</div>
+          <div class="item">9</div>
+        </div>
+      </div>
+      <div class="btn-prev">◀</div>
+      <div class="btn-next">▶</div>
+      <div class="pagination"></div>
+    </div>
+  </div>
+  <script>
+  /* dom 요소 설정 */
+  const mySliderEl = document.querySelector("#defaultSlider");
+  const btnPrevEl = mySliderEl.querySelector(".btn-prev");
+  const btnNextvEl = mySliderEl.querySelector(".btn-next");
+  const sliderEl = mySliderEl.querySelector(".slider");
+  const itemWrapEl = mySliderEl.querySelector(".item-wrap");
+  const itemEls = mySliderEl.querySelectorAll(".item");
+  const paginationEl = mySliderEl.querySelector(".pagination");
+
+
+  /* 전역 변수 */
+  let currentIndex = 0; // 현재 인덱스
+  let itemCount = 4; // item 개수
+  let itemGap = 10; // item 사이 간격
+  let slideCount = Math.ceil(itemEls.length / itemCount) // 슬라이드 개수, currentIndex가 이를 넘어가면 안됨
+
+
+  /* 초기 설정 */
+  let itemCountPercent = 100 / itemCount; // itemEl 너비 구하는데 필요한 값 (dummy)
+  let itemGapPx = itemGap - itemGap / itemCount; // itemEl 너비 구하는데 필요한 값(dummy)
+  itemEls[0].parentNode.style.gap = `${itemGap}px` // itemEl 간격
+  itemEls.forEach(itemEl => {
+    itemEl.style.width = `calc(${itemCountPercent}% - ${itemGapPx}px)`; // itemEl Width
+  })
+
+
+  /* 함수 : 자주 사용하니 함수로 만듦 */
+  // slide 이동 함수
+  function moveSlider(){
+    let itemGapSet = currentIndex * itemGap; // 같이 이동할 itemEl 간격
+    itemWrapEl.style.transition = ".3s"; // 이동할 시간
+    itemWrapEl.style.transform = `translateX(calc(${-currentIndex * 100}% - ${itemGapSet}px))`; // item-wrap 이동
+  }
+
+  // 페이지네이션 불렛 setUp
+  function setUpBullet(offIndex, onIndex){
+    paginationBulletEls[offIndex].classList.remove("active") // 불렛 비활성화
+    paginationBulletEls[onIndex].classList.add("active") // 불렛 활성화
+  }
+
+  // 이전 및 다음 버튼 setUp
+  function setupBtn(){
+    if(currentIndex == 0 && slideCount == 1){ // item 개수가 모든 화면에 나올때
+      btnPrevEl.classList.remove("active")
+      btnNextvEl.classList.remove("active")
+    }else if(currentIndex == 0 && slideCount > 1){ // 처음 화면일때
+      btnPrevEl.classList.remove("active")
+      btnNextvEl.classList.add("active")
+    }else if(currentIndex == slideCount-1 && slideCount > 1 ){ // 마지막 화면일때
+      btnPrevEl.classList.add("active")
+      btnNextvEl.classList.remove("active")
+    }else{ // 중간 화면 일때
+      btnPrevEl.classList.add("active")
+      btnNextvEl.classList.add("active")
+    }
+  }
+
+  
+  /* 페이지네이션 */
+  // 페이지네이션 불렛 생성
+  for(let i = 0; i < slideCount; i++){
+    let paginationBulletEl;
+    paginationBulletEl = document.createElement('div');
+    paginationBulletEl.classList.add('pagination-bullet');
+    // paginationBulletEls.textContent = ""
+    paginationEl.appendChild(paginationBulletEl)
+  }
+  // 페이지네이션 불렛 dom 설정
+  let paginationBulletEls = mySliderEl.querySelectorAll(".pagination-bullet")
+  paginationBulletEls[0].classList.add("active")
+
+  // 페이지네이션 버튼 설정 및 이동
+  paginationBulletEls.forEach((itemEl, index) => {
+    itemEl.addEventListener("click", () => {
+      setUpBullet(currentIndex, index)
+      currentIndex = index;
+      moveSlider();
+      setupBtn();
+    })
+  })
+  
+
+  /* 버튼 */
+  // 버튼 초기 설정
+  setupBtn();
+  // 버튼 이동
+  btnPrevEl.addEventListener("click", () => {
+    if(currentIndex > 0 && currentIndex <= slideCount-1){
+      setUpBullet(currentIndex, currentIndex-1)
+      currentIndex--;
+      moveSlider();
+      setupBtn()
+    }
+  })
+  btnNextvEl.addEventListener("click", () => {
+    if(currentIndex >= 0 && currentIndex < slideCount-1 ){
+      setUpBullet(currentIndex, currentIndex+1)
+      currentIndex++;
+      moveSlider();
+      setupBtn()
+    }
+  })
+
+  /* 스와이프 */
+  // 스와이프 필요 변수
+  let startPos = 0; // 스와이프 시작 좌표
+  let movePos = 0; // 스와이프 이동 좌표
+  let isSwiping = false; // 스와이프 실행 여부 확인
+
+  // 스와이프 관련 함수 : 마우스(PC) 및 터치(Mobile)에서 동시에 동작하므로 함수를 만듦
+  function handleSwipeStart(e){
+    startPos = e.clientX || e.touches[0].clientX;
+    if(e.clientX){
+      e.preventDefault()
+    }
+    isSwiping = true;
+  }
+
+  function handleSwipeMove(e){
+    if(isSwiping ){
+      movePos = startPos - (e.clientX || e.touches[0].clientX); // 마우스가 오른쪽 이동하면 movePos가 - (왼쪽으로 이동), 마우스가 왼쪽 이동하면 movePos가 + (오른쪽으로 이동)
+      let endMovePos = Math.max(Math.min(movePos, 50), -50);; // 처음 혹은 마지막 슬라이드일때 스와이프 제한 거리
+      let translateXValue;
+      if(currentIndex == 0 && movePos < 0){
+        translateXValue = `calc( ${-currentIndex * 100}% - ${currentIndex * itemGap}px - ${endMovePos}px)`;
+      }else if(currentIndex == slideCount-1 && movePos > 0){
+        translateXValue = `calc( ${-currentIndex * 100}% - ${currentIndex * itemGap}px - ${endMovePos}px)`;
+      }else{
+        translateXValue = `calc( ${-currentIndex * 100}% - ${currentIndex * itemGap}px - ${movePos}px)`;
+      }
+      itemWrapEl.style.transition = 'none';
+      itemWrapEl.style.transform = `translateX(${translateXValue})`
+    }
+  }
+
+  function handleSwipeEnd(e){
+    isSwiping = false;
+    let swipePoint = Math.round(sliderEl.offsetWidth / 4) // 슬라이더 너비의 25% 때 스와이핑
+    if(Math.abs(movePos) > swipePoint){
+      if(movePos < 0 && currentIndex > 0 && currentIndex <= slideCount-1){ 
+        // "마우스가 오른쪽으로 이동 && 두번째 슬라이드 ~ 마지막 슬라이드" 는 왼쪽으로 이동
+        setUpBullet(currentIndex, currentIndex-1)
+        currentIndex--;
+      }else if(movePos > 0 && currentIndex >= 0 && currentIndex < slideCount-1){
+        // "마우스가 왼쪽으로 이동 && 첫번째 슬라이드 ~ 마지막에서 이전 슬라이드" 는 오른쪽으로 이동
+        setUpBullet(currentIndex, currentIndex+1)
+        currentIndex++;
+      }
+    }
+    moveSlider();
+    setupBtn();
+    movePos = 0; // mouseleave 되어도 이동하지 않도록 movePos를 0으로 세팅
+  }
+  // 데스크탑 스와이프
+  sliderEl.addEventListener("mousedown", handleSwipeStart);
+  sliderEl.addEventListener("mousemove", handleSwipeMove);
+  sliderEl.addEventListener("mouseup", handleSwipeEnd);
+  sliderEl.addEventListener("mouseleave", handleSwipeEnd);
+  
+  // 모바일 스와이프
+  sliderEl.addEventListener("touchstart", handleSwipeStart);
+  sliderEl.addEventListener("touchmove", handleSwipeMove);
+  sliderEl.addEventListener("touchend", handleSwipeEnd);
+  </script>
+</body>
+</html>

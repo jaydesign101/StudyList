@@ -1,0 +1,48 @@
+/* scrollToAreaMenu CSS */
+header#scrollToAreaMenu {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: min-content;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header#scrollToAreaMenu > div {
+  transform: translateY(-2px);
+  padding: 10px 30px;
+  position: relative;
+  cursor: pointer;
+}
+header#scrollToAreaMenu > div:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background-color: #999;
+}
+header#scrollToAreaMenu > div:last-child:before {
+  display: none;
+}
+header#scrollToAreaMenu > div:hover {
+  text-decoration: underline;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  color: #999;
+}
+section:nth-child(even) {
+  background-color: azure;
+}
